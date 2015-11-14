@@ -1,0 +1,3497 @@
+
+<!DOCTYPE html>
+<html lang="en" class="devsite">
+
+  
+
+  <head>
+    <meta charset="utf-8" />
+    <script src="/_static/js/script_head.js"></script>
+    <link rel="stylesheet" type="text/css" href="/_static/css/screen.css" />
+    <link rel="shortcut icon" href="/_static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/_static/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+    <script src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <!--[if lt IE 9]>
+    <script src="/_static/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <script type="text/javascript">
+    var contentTimer = new window.jstiming.Timer();
+
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'en';
+  </script>
+  
+    
+    <title>Google Apps Platform &mdash; Google Developers</title>
+    
+  
+  
+  
+  
+  
+  
+
+
+
+    
+    
+
+  </head>
+  <body class="two-column docs">
+    
+    <div id="sandbar">
+      
+      <a href="/sandbar?q=&page_url=/google-apps/spreadsheets/"></a>
+      <div id="gc-googlebar"></div>
+      <img src="/_static/images/google-logo.png" style="display:none;"/>
+      
+    </div>
+    
+
+    
+    
+
+    <div id="gc-wrapper" itemscope itemtype="http://schema.org/Article">
+      
+      <input id="gc-analytics" type="hidden" value="UA-24532603-1" />
+      
+
+      
+
+      <div id="gc-topnav">
+        <div>
+          <ul>
+            
+              
+            
+            <li class=""><a href="/">Home</a></li>
+            
+            <li class="active"><a href="/products/">Products</a></li>
+            
+            <li class=""><a href="/events/">Events</a></li>
+            
+            <li class=""><a href="/showcase/">Showcase</a></li>
+            
+            <li class=""><a href="/live/">Live</a></li>
+            
+            <li class=""><a href="/groups/">Groups</a></li>
+            
+              
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+
+      
+      
+      
+        <div id="gc-appbar">
+          
+          
+<h1>
+
+  <a href="/google-apps/">Google Apps Platform</a>
+  <div class="plusone-container">
+    <div class="g-plusone"
+      data-href="https://developers.google.com/google-apps/"
+      data-size="medium"
+      data-source="google:developers"></div>
+  </div>
+
+
+
+
+
+
+</h1>
+
+          
+        </div>
+      
+      
+
+      
+        
+      <div id="gc-main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar">
+        
+
+  
+
+
+
+  <nav class="gc-toc"><ul><li class=""><a href="/google-apps/spreadsheets/" data-title="Developer&#39;s Guide"><span>Developer&#39;s Guide</span></a></li></ul><hr/><ul><li class=""><a href="http://groups.google.com/forum/embed/?place=forum/google-spreadsheets-api" data-title="Discussions"><span>Discussions</span></a></li><li class=""><a href="http://code.google.com/a/google.com/p/apps-api-issues/issues/list?q=label:API-Spreadsheets" data-title="Issue Tracker"><span>Issue Tracker</span></a></li><li class=""><a href="http://googleappsdeveloper.blogspot.com" data-title="Blog"><span>Blog</span></a></li></ul><hr/><ul><li class=""><a href="/google-apps/spreadsheets/terms" data-title="Terms of Service"><span>Terms of Service</span></a></li></ul></nav>
+
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           
+           >
+        
+        <div>
+  
+          
+  
+  <div itemprop="articleBody">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/google-apps/css/apps.css" />
+
+
+<h1 class="page-title" id="google_spreadsheets_api_version_30">Google Spreadsheets API version 3.0</h1>
+<p class="warning"><b>Important:</b> Versions 1 and 2 of the Google Spreadsheets API have been
+<a href="http://googledevelopers.blogspot.com/2012/04/changes-to-deprecation-policies-and-api.html">officially deprecated</a> as of April 20, 2012 and will be shut down on October 20, 2012.  Migration to v3 should be simple, as it includes all the features of v1 and v2, thus you only need to stop specifying v1 or v2 with your requests. We recommend that you update your apps to send requests to v3 as soon as possible.</p>
+
+<p>The Google Spreadsheets API enables developers to create applications that read
+and modify the data in Google Spreadsheets.</p>
+<hr />
+<nav class="inline-toc"><ol class="toc"><li><a href="#introduction">Introduction</a><ol class="toc"><li><a href="#what_can_this_api_do">What can this API do?</a></li><li><a href="#audience">Audience</a></li><li><a href="#terminology_used_in_this_guide">Terminology used in this guide</a></li><li><a href="#which_version_of_the_api_should_be_used">Which version of the API should be used?</a></li></ol></li><li><a href="#additional_resources_and_information_about_this_guide">Additional resources and information about this guide</a></li><li><a href="#setting_up_your_client_library">Setting up your client library</a></li><li><a href="#authorizing_requests">Authorizing requests</a><ol class="toc"><li><a href="#about_authorization_protocols">About authorization protocols</a></li><li><a href="#authorizing_requests_with_oauth_20">Authorizing requests with OAuth 2.0</a></li><li><a href="#authorizing_requests_with_oauth_10a">Authorizing requests with OAuth 1.0a</a></li><li><a href="#authorizing_requests_with_clientlogin">Authorizing requests with ClientLogin</a></li></ol></li><li><a href="#specifying_a_version">Specifying a version</a></li><li><a href="#creating_a_spreadsheet">Creating a spreadsheet</a></li><li><a href="#spreadsheets_api_urls_visibilities_and_projections">Spreadsheets API URLs, visibilities, and projections</a></li><li><a href="#retrieving_a_list_of_spreadsheets">Retrieving a list of spreadsheets</a></li><li><a href="#working_with_worksheets">Working with worksheets</a><ol class="toc"><li><a href="#retrieving_information_about_worksheets">Retrieving information about worksheets</a></li><li><a href="#adding_a_worksheet">Adding a worksheet</a></li><li><a href="#modifying_a_worksheets_title_and_size">Modifying a worksheet's title and size</a></li><li><a href="#deleting_a_worksheet">Deleting a worksheet</a></li></ol></li><li><a href="#working_with_list-based_feeds">Working with list-based feeds</a><ol class="toc"><li><a href="#retrieving_a_list-based_feed">Retrieving a list-based feed</a></li><li><a href="#sorting_rows">Sorting rows</a></li><li><a href="#sending_a_structured_query_for_rows">Sending a structured query for rows</a></li><li><a href="#adding_a_list_row">Adding a list row</a></li><li><a href="#updating_a_list_row">Updating a list row</a></li><li><a href="#deleting_a_list_row">Deleting a list row</a></li></ol></li><li><a href="#working_with_cell-based_feeds">Working with cell-based feeds</a><ol class="toc"><li><a href="#retrieving_a_cell-based_feed">Retrieving a cell-based feed</a></li><li><a href="#fetching_specific_rows_or_columns">Fetching specific rows or columns</a></li><li><a href="#changing_contents_of_a_cell">Changing contents of a cell</a></li><li><a href="#updating_multiple_cells_with_a_batch_request">Updating multiple cells with a batch request</a></li></ol></li></ol></nav><hr />
+<h2 id="introduction">Introduction</h2>
+<p>This guide discusses how to use the Google Spreadsheets API version 3.0.</p>
+<h3 id="what_can_this_api_do">What can this API do?</h3>
+<p>This API is useful for:</p>
+<ul>
+<li>managing the worksheets in a Google spreadsheet</li>
+<li>consuming the rows of a worksheet</li>
+<li>managing cells in a worksheet by position</li>
+</ul>
+<p>Common use cases of this API include:</p>
+<ul>
+<li>computing financial data stored in an inaccessible system</li>
+<li>presenting statistics to users in a web browser</li>
+<li>consuming data entered into a spreadsheet by a user</li>
+</ul>
+<h3 id="audience">Audience</h3>
+<p>This guide is intended for software developers needing a technical reference
+for using the Google Spreadsheets API.  The information you find in this guide
+is written by Google engineers, and is an authoritative reference of the API.</p>
+<h3 id="terminology_used_in_this_guide">Terminology used in this guide</h3>
+<p>Throughout this guide, a number of terms are used which are intended to have
+specific meanings.</p>
+<dl>
+<dt>spreadsheet</dt>
+<dd>Google Spreadsheet document, created with the Google Docs user interface or with the Google Documents List API.</dd>
+<dt>worksheet</dt>
+<dd>Named collection of cells within a spreadsheet.  All spreadsheets must have at least one worksheet, and have one worksheet by default.</dd>
+<dt>list row</dt>
+<dd>Row of cells in a worksheet, represented as a key-value pair, where each key is a column name, and each value is the cell value.  The first row of a worksheet is always considered the header row when using the API, and therefore is the row that defines the keys represented in each row.</dd>
+<dt>cell</dt>
+<dd>Single piece of data in a worksheet.</dd>
+</dl>
+<h3 id="which_version_of_the_api_should_be_used">Which version of the API should be used?</h3>
+<p>Version 3.0 (the version described in this guide), is the recommended version
+of the API.  There are no advantages to using previous versions of the API.
+For this reason, we no longer document versions 1 or 2 of the Google
+Spreadsheets API, as version 3.0 is a superset of versions 1 and 2.  Versions 1
+and 2 are deprecated as of April 20, 2012, and any developer actively using
+these versions is urged to upgrade.</p>
+<h2 id="additional_resources_and_information_about_this_guide">Additional resources and information about this guide</h2>
+<p>Occasionally, we make a mistake in this documentation, or unknowingly break a
+feature that you depend on.</p>
+<p>If this has happened to you, sorry! You can help us fix the issue by posting in
+the <a href="forum.html">forum</a> or <a href="http://code.google.com/a/google.com/p/apps-api-issues/issues/list?q=label:API-Spreadsheets">by filing a
+bug</a>.
+We appreciate your help!</p>
+<h2 id="setting_up_your_client_library">Setting up your client library</h2>
+<p>A number of client libraries are provided in various languages.  These client
+libraries make it easier to interact with the Spreadsheets API.</p>
+<p>This section is not relevant to applications using the Spreadsheets API at the
+protocol level, but all application developers should strongly consider using a
+GData client library to interact with the API.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Java</h3><p>The Java client library is maintained in an open-source project on Google
+    Project hosting.  The Java library itself is distributed as a ZIP file,
+    containing a number of JARs that applications can import in order to gain
+    access to the library.</p><p>The Java client library requires JDK 5.0 or greater.  The latest version of
+the Oracle JDK is available from
+<a href="http://www.oracle.com/technetwork/java/index.html">http://www.oracle.com/technetwork/java/index.html</a>.</p><p class="alert-message info note"><strong>Note:</strong><span> If using <a href="http://www.eclipse.org">Eclipse</a>, use Eclipse's classpath
+manager to import the JARs mentioned below.  Importing JARs into an Eclipse
+project is described in detail
+<a href="http://stackoverflow.com/questions/3280353/how-to-import-a-jar-in-eclipse">here</a>.</span></p><p class="alert-message info note"><strong>Note:</strong><span> If using <a href="http://www.netbeans.org">NetBeans</a>, use NetBeans' project
+properties manager to import the JARs mentioned below.  Importing JARs into
+a NetBeans project is described in detail
+<a href="http://netbeans.org/kb/docs/java/project-setup.html#projects-classpath">here</a>.</span></p><p>Unfortunately, due to restrictive licensing, we cannot at this time just
+give developers a ZIP of all JARs required to interact with the API.  Some
+of the JARs are not available without additional license agreements.
+Because of this, some of the JARs must be downloaded individually.  We
+sincerely apologize for this inconvenience.</p><p>To setup a development environment for working with the Spreadsheets API,
+perform the following steps.</p><ol><li><p>Download the latest <code>gdata-src.java-*.zip</code> file from the project's
+   <a href="http://code.google.com/p/gdata-java-client/downloads/list">Downloads</a>
+   page.  Replace <code>*</code> in this case with something like <code>1.46.0</code>.</p></li><li><p>Extract the ZIP file into a new directory.</p><pre class="prettyprint"><code>unzip gdata-src.java-1.46.0.zip -d ./gdata-java-client
+</code></pre></li><li><p>Copy the JARs from <code>gdata-java-client/gdata/java/lib</code> into a directory
+   included in the application's classpath.</p><pre class="prettyprint"><code>cp gdata-java-client/gdata/java/lib/* /path/to/application/lib
+</code></pre></li><li><p>Copy the JARs from <code>gdata-java-client/gdata/java/deps</code> into the
+   application's classpath.</p><pre class="prettyprint"><code>cp gdata-java-client/gdata/java/deps/* /path/to/application/lib
+</code></pre></li><li><p>Download the JavaMail API (version 1.4 or greater) from
+   <a href="http://www.oracle.com/technetwork/java/index-138643.html">here</a>.
+   Extract the ZIP file and copy <code>mail.jar</code> to the application's classpath.</p><pre class="prettyprint"><code>unzip javamail1_4_4.zip -d javamail
+cp javamail/javamail-1.4.4/mail.jar /path/to/application/lib
+</code></pre></li><li><p>If using the Oracle JDK version 1.5, download the JavaBeans Activation
+   Framework from
+   <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-135046.html">here</a>.
+   Extract the ZIP file and copy <code>activation.jar</code> to the application's
+   classpath.</p><pre class="prettyprint"><code>unzip jaf-1_1_1.zip -d jaf
+cp jaf/jaf-1.1.1/activation.jar /path/to/application/lib
+</code></pre></li><li><p>To implement any of the code discussed in this document, use the
+   following class template.</p><pre class="prettyprint"><code>import com.google.gdata.client.authn.oauth.*;
+import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.*;
+import com.google.gdata.data.batch.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    // Application code here
+
+  }
+}
+</code></pre></li><li><p>Once the above template is in place, continue reading the rest of this
+   document, applying the Java code samples as necessary.</p></li></ol></section><section><h3>.NET</h3><p>The .NET client library is maintained in an open-source project on Google
+    Project hosting.  The .NET library itself is distributed as a MSI installer,
+    containing a number of DLLs that applications can import in order to gain
+    access to the library.</p><p>The .NET client library requires the .NET Framework 2.0 or greater.</p><p>To setup a development environment for working with the Spreadsheets API,
+perform the following steps.</p><ol><li><p>Download the latest <code>Google_Data_API_Setup_*.msi</code> file from the project's
+   <a href="http://code.google.com/p/google-gdata/downloads/list">Downloads</a>
+   page.  Replace <code>*</code> in this case with something like <code>1.9.0.0</code>.</p></li><li><p>Run the installer and follow the instructions in the setup wizard.</p></li><li><p>To implement any of the code discussed in this document, use the
+   following class template.</p><pre class="prettyprint"><code>using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program {
+    static void Main(string[] args)
+    {
+
+      // Application code here
+
+    }
+  }
+}
+</code></pre></li><li><p>Once the above template is in place, continue reading the rest of this
+   document, applying the .NET code samples as necessary.</p></li></ol></section></div>
+<h2 id="authorizing_requests">Authorizing requests</h2>
+<p>When your application requests non-public user data, it must include an
+authorization token. The token also identifies your application to Google.</p>
+<h3 id="about_authorization_protocols">About authorization protocols</h3>
+<p>We recommend using OAuth 2.0 to authorize requests.</p>
+<p>The Google Spreadsheets API also supports older authorization options, such as
+OAuth 1.0, AuthSub, or ClientLogin; however, in most cases we don't recommend
+using those other options. If your application already uses those options, we
+recommend migrating to OAuth 2.0 if possible.</p>
+<p>If your application has certain unusual authorization requirements, such as
+logging in at the same time as requesting data access (hybrid) or domain-wide
+delegation of authority (2LO), then you cannot currently use OAuth 2.0 tokens.
+In such cases, you must instead use OAuth 1.0 tokens.</p>
+<h3 id="authorizing_requests_with_oauth_20">Authorizing requests with OAuth 2.0</h3>
+<p>Requests to the Google Spreadsheets API for non-public user data must be
+authorized by an authenticated user.</p>
+<p>The details of the authorization process, or "flow," for OAuth 2.0 vary
+somewhat depending on what kind of application you're writing. The following
+general process applies to all application types:</p>
+<ol>
+<li>When you create your application, you register it with Google. Google then
+   provides information you'll need later, such as a client ID and a client
+   secret.</li>
+<li>Activate the Google Spreadsheets API in the Services pane of the Google APIs
+   Console. (If it isn't listed in the Console, then skip this step.)</li>
+<li>When your application needs access to user data, it asks Google for a
+   particular scope of access.</li>
+<li>Google displays an OAuth dialog to the user, asking them to authorize your
+   application to request some of their data.</li>
+<li>If the user approves, then Google gives your application a short-lived
+   access token.</li>
+<li>Your application requests user data, attaching the access token to the
+   request.</li>
+<li>If Google determines that your request and the token are valid, it returns
+   the requested data.</li>
+</ol>
+<p>Some flows include additional steps, such as using refresh tokens to acquire
+new access tokens. For detailed information about flows for various types of
+applications, see Google's OAuth 2.0 documentation.</p>
+<p>Here's the OAuth 2.0 scope information for the Google Spreadsheets API:</p>
+<pre class="prettyprint"><code>https://spreadsheets.google.com/feeds
+</code></pre>
+<p>Additionally, if an application needs to create spreadsheets, or otherwise
+manipulate their metadata, then the application must also request the Google
+Documents Lists API scope:</p>
+<pre class="prettyprint"><code>https://docs.google.com/feeds
+</code></pre>
+<p>To request access using OAuth 2.0, your application needs the scope
+information, as well as information that Google supplies during application
+registration (such as the client ID and/or the client secret).</p>
+<h4 id="performing_oauth_20">Performing OAuth 2.0</h4>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>.NET</h3><p>The following example is copied from the google-gdata project's
+    <a href="http://code.google.com/p/google-gdata/source/browse/trunk/clients/cs/samples/oauth2_sample/oauth2demo.cs">sample
+    directory</a>.
+    It has been modified to accommodate the Spreadsheets API, and is provided
+    here for ease of reference.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 1: Configure how to perform OAuth 2.0
+      ////////////////////////////////////////////////////////////////////////////
+
+      // TODO: Update the following information with that obtained from
+      // https://code.google.com/apis/console. After registering
+      // your application, these will be provided for you.
+
+      string CLIENT_ID = "12345678.apps.googleusercontent.com";
+
+      // This is the OAuth 2.0 Client Secret retrieved
+      // above.  Be sure to store this value securely.  Leaking this
+      // value would enable others to act on behalf of your application!
+      string CLIENT_SECRET = "Gc0230jdsah01jqpowpgff";
+
+      // Space separated list of scopes for which to request access.
+      string SCOPE = "https://spreadsheets.google.com/feeds https://docs.google.com/feeds";
+
+      // This is the Redirect URI for installed applications.
+      // If you are building a web application, you have to set your
+      // Redirect URI at https://code.google.com/apis/console.
+      string REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 2: Set up the OAuth 2.0 object
+      ////////////////////////////////////////////////////////////////////////////
+
+      // OAuth2Parameters holds all the parameters related to OAuth 2.0.
+      OAuth2Parameters parameters = new OAuth2Parameters();
+
+      // Set your OAuth 2.0 Client Id (which you can register at
+      // https://code.google.com/apis/console).
+      parameters.ClientId = CLIENT_ID;
+
+      // Set your OAuth 2.0 Client Secret, which can be obtained at
+      // https://code.google.com/apis/console.
+      parameters.ClientSecret = CLIENT_SECRET;
+
+      // Set your Redirect URI, which can be registered at
+      // https://code.google.com/apis/console.
+      parameters.RedirectUri = REDIRECT_URI;
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 3: Get the Authorization URL
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Set the scope for this particular service.
+      parameters.Scope = SCOPE;
+
+      // Get the authorization url.  The user of your application must visit
+      // this url in order to authorize with Google.  If you are building a
+      // browser-based application, you can redirect the user to the authorization
+      // url.
+      string authorizationUrl = OAuthUtil.CreateOAuth2AuthorizationUrl(parameters);
+      Console.WriteLine(authorizationUrl);
+      Console.WriteLine("Please visit the URL above to authorize your OAuth "
+        + "request token.  Once that is complete, type in your access code to "
+        + "continue...");
+      parameters.AccessCode = Console.ReadLine();
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 4: Get the Access Token
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Once the user authorizes with Google, the request token can be exchanged
+      // for a long-lived access token.  If you are building a browser-based
+      // application, you should parse the incoming request token from the url and
+      // set it in OAuthParameters before calling GetAccessToken().
+      OAuthUtil.GetAccessToken(parameters);
+      string accessToken = parameters.AccessToken;
+      Console.WriteLine("OAuth Access Token: " + accessToken);
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 5: Make an OAuth authorized request to Google
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Initialize the variables needed to make the request
+      GOAuth2RequestFactory requestFactory =
+          new GOAuth2RequestFactory(null, "MySpreadsheetIntegration-v1", parameters);
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+      service.RequestFactory = requestFactory;
+
+      // Make the request to Google
+      // See other portions of this guide for code to put here...
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="authorizing_requests_with_oauth_10a">Authorizing requests with OAuth 1.0a</h3>
+<p class="alert-message special"><strong>Important:</strong><span> Before proceeding, please read the
+<a href="https://developers.google.com/accounts/docs/OAuth">documentation</a> describing
+the OAuth 1.0a web flow.  Understanding the flow of OAuth 1.0a, and what occurs
+in a client's web browser while authorizing the Spreadsheets API, is imperative
+to ensure an application functions correctly.</span></p>
+<p>As with OAuth 2.0, the scope to request for OAuth 1.0a while working with the
+Spreadsheets API is:</p>
+<pre class="prettyprint"><code>https://spreadsheets.google.com/feeds
+</code></pre>
+<p>Again, if an application needs to create spreadsheets, or otherwise manipulate
+their metadata, then the application must also request the Google Documents
+Lists API scope:</p>
+<pre class="prettyprint"><code>https://docs.google.com/feeds
+</code></pre>
+<p>As mentioned previously, the Java client library does not currently support
+OAuth 2.0.  Instead, to authorize with OAuth 1.0a, use the following code.</p>
+<h4 id="performing_3-legged_oauth_10a_oauth_10a_for_web_applications">Performing 3-Legged OAuth 1.0a (OAuth 1.0a for Web Applications)</h4>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Java</h3><p>The following example is copied from the gdata-java-client project's
+    <a href="http://code.google.com/p/gdata-java-client/source/browse/trunk/java/sample/oauth/OAuthExample.java">sample
+    directory</a>.
+    It has been modified to accommodate the Spreadsheets API, and is provided
+    here for ease of reference.</p><pre class="prettyprint"><code>import com.google.gdata.client.authn.oauth.GoogleOAuthHelper;
+import com.google.gdata.client.authn.oauth.GoogleOAuthParameters;
+import com.google.gdata.client.authn.oauth.OAuthHmacSha1Signer;
+import com.google.gdata.client.authn.oauth.OAuthRsaSha1Signer;
+import com.google.gdata.client.authn.oauth.OAuthSigner;
+import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.Link;
+import com.google.gdata.data.batch.BatchOperationType;
+import com.google.gdata.data.batch.BatchStatus;
+import com.google.gdata.data.batch.BatchUtils;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 1: Configure how to perform OAuth 1.0a
+    ////////////////////////////////////////////////////////////////////////////
+
+    boolean USE_RSA_SIGNING = false;
+
+    // TODO: Update the following information with that obtained from
+    // https://www.google.com/accounts/ManageDomains. After registering
+    // your application, these will be provided for you.
+
+    String CONSUMER_KEY = "yourappdomain.com";
+
+    // TODO: Replace this with base-64 encoded private key conforming
+    // to PKCS #8 standard, if and only if you will use RSA-SHA1
+    // signing.  Otherwise, this is the OAuth Consumer Secret retrieved
+    // above.  Be sure to store this value securely.  Leaking this
+    // value would enable others to act on behalf of your application!
+    String CONSUMER_SECRET = "Gc0230jdsah01jqpowpgff";
+
+    // Space separated list of scopes for which to request access.
+    String SCOPES = "https://spreadsheets.google.com/feeds https://docs.google.com/feeds";
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 2: Set up the OAuth objects
+    ////////////////////////////////////////////////////////////////////////////
+
+    // You first need to initialize a few OAuth-related objects.
+    // GoogleOAuthParameters holds all the parameters related to OAuth.
+    // OAuthSigner is responsible for signing the OAuth base string.
+    GoogleOAuthParameters oauthParameters = new GoogleOAuthParameters();
+
+    // Set your OAuth Consumer Key (which you can register at
+    // https://www.google.com/accounts/ManageDomains).
+    oauthParameters.setOAuthConsumerKey(CONSUMER_KEY);
+
+    // Initialize the OAuth Signer.  If you are using RSA-SHA1, you must provide
+    // your private key as a Base-64 string conforming to the PKCS #8 standard.
+    // Visit http://code.google.com/apis/gdata/authsub.html#Registered to learn
+    // more about creating a key/certificate pair.  If you are using HMAC-SHA1,
+    // you must set your OAuth Consumer Secret, which can be obtained at
+    // https://www.google.com/accounts/ManageDomains.
+    OAuthSigner signer;
+    if (USE_RSA_SIGNING) {
+      signer = new OAuthRsaSha1Signer(CONSUMER_SECRET);
+    } else {
+      oauthParameters.setOAuthConsumerSecret(CONSUMER_SECRET);
+      signer = new OAuthHmacSha1Signer();
+    }
+
+    // Finally, create a new GoogleOAuthHelperObject.  This is the object you
+    // will use for all OAuth-related interaction.
+    GoogleOAuthHelper oauthHelper = new GoogleOAuthHelper(signer);
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 3: Get the Authorization URL
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Set the scope for this particular service.
+    oauthParameters.setScope(SCOPES);
+
+    // This method also makes a request to get the unauthorized request token,
+    // and adds it to the oauthParameters object, along with the token secret
+    // (if it is present).
+    oauthHelper.getUnauthorizedRequestToken(oauthParameters);
+
+    // Get the authorization url.  The user of your application must visit
+    // this url in order to authorize with Google.  If you are building a
+    // browser-based application, you can redirect the user to the authorization
+    // url.
+    String requestUrl = oauthHelper.createUserAuthorizationUrl(oauthParameters);
+    System.out.println(requestUrl);
+    System.out.println("Please visit the URL above to authorize your OAuth "
+        + "request token.  Once that is complete, press any key to "
+        + "continue...");
+    System.in.read();
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 4: Get the Access Token
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Once the user authorizes with Google, the request token can be exchanged
+    // for a long-lived access token.  If you are building a browser-based
+    // application, you should parse the incoming request token from the url and
+    // set it in GoogleOAuthParameters before calling getAccessToken().
+    String token = oauthHelper.getAccessToken(oauthParameters);
+    System.out.println("OAuth Access Token: " + token);
+    System.out.println();
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 5: Make an OAuth authorized request to Google
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Initialize the variables needed to make the request
+    URL feedUrl = new URL(variables.getFeedUrl());
+    System.out.println("Sending request to " + feedUrl.toString());
+    System.out.println();
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // Set the OAuth credentials which were obtained from the step above.
+    service.setOAuthCredentials(oauthParameters, signer);
+
+    // Make the request to Google
+    // See other portions of this guide for code to put here...
+
+    ////////////////////////////////////////////////////////////////////////////
+    // STEP 6: Revoke the OAuth token
+    ////////////////////////////////////////////////////////////////////////////
+
+    System.out.println("Revoking OAuth Token...");
+    oauthHelper.revokeToken(oauthParameters);
+    System.out.println("OAuth Token revoked...");
+  }
+}
+</code></pre></section><section><h3>.NET</h3><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 1: Configure how to perform OAuth 1.0a
+      ////////////////////////////////////////////////////////////////////////////
+
+      // TODO: Update the following information with that obtained from
+      // https://www.google.com/accounts/ManageDomains. After registering
+      // your application, these will be provided for you.
+
+      string CONSUMER_KEY = "yourappdomain.com";
+
+      // This is the OAuth Consumer Secret retrieved
+      // above.  Be sure to store this value securely.  Leaking this
+      // value would enable others to act on behalf of your application!
+      string CONSUMER_SECRET = "Gc0230jdsah01jqpowpgff";
+
+      // Space separated list of scopes for which to request access.
+      string SCOPE = "https://spreadsheets.google.com/feeds https://docs.google.com/feeds";
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 2: Set up the OAuth object
+      ////////////////////////////////////////////////////////////////////////////
+
+      // OAuthParameters holds all the parameters related to OAuth.
+      OAuthParameters parameters = new OAuthParameters();
+
+      // Set your OAuth Consumer Key (which you can register at
+      // https://www.google.com/accounts/ManageDomains).
+      parameters.ConsumerKey = CONSUMER_KEY;
+
+      // Set your OAuth Consumer Secret, which can be obtained at
+      // https://www.google.com/accounts/ManageDomains.
+      parameters.ConsumerSecret = CONSUMER_SECRET;
+
+      // HMAC-SHA1 is the only signature method supported by the .NET library.
+      parameters.SignatureMethod = OAuthBase.HMACSHA1SignatureType;
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 3: Get the Authorization URL
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Set the scope for this particular service.
+      parameters.Scope = SCOPE;
+
+      // This method also makes a request to get the unauthorized request token,
+      // and adds it to the oauthParameters object, along with the token secret
+      // (if it is present).
+      OAuthUtil.GetUnauthorizedRequestToken(parameters);
+
+      // Get the authorization url.  The user of your application must visit
+      // this url in order to authorize with Google.  If you are building a
+      // browser-based application, you can redirect the user to the authorization
+      // url.
+      string authorizationUrl = OAuthUtil.CreateUserAuthorizationUrl(parameters);
+      Console.WriteLine(authorizationUrl);
+      Console.WriteLine("Please visit the URL above to authorize your OAuth "
+        + "request token.  Once that is complete, press any key to "
+        + "continue...");
+      Console.ReadLine();
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 4: Get the Access Token
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Once the user authorizes with Google, the request token can be exchanged
+      // for a long-lived access token.  If you are building a browser-based
+      // application, you should parse the incoming request token from the url and
+      // set it in OAuthParameters before calling GetAccessToken().
+      OAuthUtil.GetAccessToken(parameters);
+      string accessToken = parameters.Token;
+      Console.WriteLine("OAuth Access Token: " + accessToken);
+
+      ////////////////////////////////////////////////////////////////////////////
+      // STEP 5: Make an OAuth authorized request to Google
+      ////////////////////////////////////////////////////////////////////////////
+
+      // Initialize the variables needed to make the request
+      GOAuthRequestFactory requestFactory =
+          new GOAuthRequestFactory(null, "MySpreadsheetIntegration-v1", parameters);
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+      service.RequestFactory = requestFactory;
+
+      // Make the request to Google
+      // See other portions of this guide for code to put here...
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="authorizing_requests_with_clientlogin">Authorizing requests with ClientLogin</h3>
+<p class="alert-message warning"><strong>Warning:</strong><span> The use of ClientLogin as an authorization mechanism is strongly
+discouraged.  Before using this mechanism, please thoroughly consider using
+OAuth 2.0 with a stored refresh token or OAuth 1.0a with a stored access token.</span></p>
+<p>ClientLogin allows applications to make requests to the Spreadsheets API using
+the username and application-specific password of a Google account.  When using
+this mechanism, applications must take extreme caution when handling these
+credentials, as leaking the credentials could have severe consequences.  Any
+application experiencing a security concern should immediately notify affected
+users.</p>
+<p>To implement the ClientLogin mechanism, make an authorized request to the
+Spreadsheets API, with the appropriate <code>Authorization</code> header.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>Detailed information on implementing ClientLogin from a protocol
+    perspective is available
+    <a href="https://developers.google.com/accounts/docs/AuthForInstalledApps">here</a>.</p><p>When fetching a ClientLogin token for the Spreadsheets API, be sure to use
+the <code>wise</code> service name.</p></section><section><h3>Java</h3><p>The following is a code sample in which a <code>SpreadsheetService</code> object is
+    configured to use ClientLogin for authorization.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    String USERNAME = "someuser@gmail.com";
+    String PASSWORD = "testing123";
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+    service.setUserCredentials(USERNAME, PASSWORD);
+
+    // TODO: See other portions of this guide for code to put here...
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following is a code sample in which a <code>SpreadsheetService</code> object is
+    configured to use ClientLogin for authorization.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      string USERNAME = "someuser@gmail.com";
+      string PASSWORD = "testing123";
+
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+      service.setUserCredentials(USERNAME, PASSWORD);
+
+      // TODO: See other portions of this guide for code to put here...
+    }
+  }
+}
+</code></pre></section></div>
+<h2 id="specifying_a_version">Specifying a version</h2>
+<p>Every request sent to the Google Spreadsheets API can optionally specify that
+the request is for version 3.0 of the API, although this is not necessary.</p>
+<p class="alert-message info note"><strong>Note:</strong><span> The client libraries for the Google Spreadsheets API automatically set
+the appropriate version header.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To specify a version number, use the <code>GData-Version</code> HTTP header.</p><pre class="prettyprint"><code>GData-Version: 3.0
+</code></pre><p>Alternatively, version 3.0 can be specified as a URL parameter.</p><pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/spreadsheets/private/full?v=3.0
+</code></pre></section><section><h3>Java</h3><p>Version <code>3.0</code> is specified by default in the GData Java client library.
+    Java developers do not need to do anything to specify a version.</p><p>In the rare circumstance an application may need to specify another version,
+the line of code to do so reads:</p><pre class="prettyprint"><code>SpreadsheetService service = new SpreadsheetService("MySpreadsheetIntegration");
+service.setProtocolVersion(SpreadsheetService.Versions.V3);
+//service.setProtocolVersion(SpreadsheetService.Versions.V2);
+//service.setProtocolVersion(SpreadsheetService.Versions.V1);
+</code></pre></section><section><h3>Python</h3><p>Version <code>3.0</code> is specified by default in the GData Python client library.
+    Python developers do not need to do anything to specify a version.</p></section><section><h3>.NET</h3><p>Version <code>3.0</code> is specified by default in the GData .NET client library.
+    .NET developers do not need to do anything to specify a version.</p></section></div>
+<h2 id="creating_a_spreadsheet">Creating a spreadsheet</h2>
+<p>It is possible to create a new spreadsheet by uploading a spreadsheet file via
+the <a href="https://developers.google.com/google-apps/documents-list/">Google Documents List
+API</a>. The
+Spreadsheets API does not currently provide a way to delete a spreadsheet, but
+this is also provided in the Documents List API.  For testing purposes, you may
+create a spreadsheet manually or upload one.</p>
+<h2 id="spreadsheets_api_urls_visibilities_and_projections">Spreadsheets API URLs, visibilities, and projections</h2>
+<p>The Spreadsheets API supports visibilities and projections in request URLs.
+Visibilities determine whether or not authorization should be used for a
+request.  Projections determine which data is returned in a response to a
+request.  Visibilities and projections are set in request URLs to the API.</p>
+<p>An example Spreadsheets API URL reads:</p>
+<pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/worksheets/key/private/full
+</code></pre>
+<p>URLs similar to that one are returned by the Spreadsheets API in various link
+elements in feed responses.  When working with the API, applications can change
+the keywords <code>private</code> and <code>full</code>, in order to manipulate API functionality
+slightly.  URLs returned by the API after having changed these keywords will
+reflect the keywords used in the source request.</p>
+<p>That is, if the following request is made to the API:</p>
+<pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/worksheets/key/private/basic
+</code></pre>
+<p>Then the cells feed URLs in each worksheet entry are of the form:</p>
+<pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/basic
+</code></pre>
+<p>And the list feed URLs in each worksheet entry are of the form:</p>
+<pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/list/key/worksheetId/private/basic
+</code></pre>
+<p>Note that the <code>basic</code> projection is already set on these generated URLs.  The
+same applies for the <code>public</code> visibility described below.</p>
+<p>There are other visibility and projection values available besides <code>private</code>
+and <code>full</code>.</p>
+<p>The <code>private</code> visibility can be replaced with the <code>public</code> visibility, which
+enables the feed to work without authorization for spreadsheets that have been
+"Published to the Web".  The <code>public</code> visibility is supported on the
+worksheets, list, and cells feeds.  The <code>public</code> visibility is useful for
+accessing the contents of a spreadsheet from the client context of a web page
+in JavaScript, for example.</p>
+<p>Publishing a spreadsheet to the web can only be done from the Google
+Spreadsheets user interface.  To start publishing a spreadsheet to the web,
+select <code>File &gt; Publish to the web</code> from the Spreadsheets user interface, and
+then click the <code>Start Publishing</code> button.</p>
+<p class="alert-message warning"><strong>Warning:</strong><span> API requests using the <code>public</code> visiblity for feeds on spreadsheets
+that are not "Published to the Web" yield an HTTP <code>400 Bad Request</code> response
+with the message <code>The spreadsheet at this URL could not be found. Make sure
+that you have the right URL and that the owner of the spreadsheet hasn't
+deleted it.</code></span></p>
+<p class="alert-message warning"><strong>Warning:</strong><span> The <code>public</code> visibility does not work for spreadsheets that are made
+"Public on the web" from the "Visibility options" portion of the sharing dialog
+of a Google Spreadsheet.  "Published to the web" and "Public on the web" are
+different ways to share a spreadsheet.  We are aware that this is confusing,
+and will address it in a future version of the API.  For now, we hope that this
+detailed warning prevents confusion.</span></p>
+<p>The <code>full</code> projection can be replaced with the <code>basic</code> projection, causing the
+feed to return less information (i.e. fewer fields, and only the most important
+data).  This is better for low-bandwidth environments.  The <code>basic</code> projection
+is supported on the worksheets, list, and cells feeds.</p>
+<h2 id="retrieving_a_list_of_spreadsheets">Retrieving a list of spreadsheets</h2>
+<p>The Google Spreadsheets API supports fetching a list of spreadsheets for the
+authenticated user. Note however that you cannot create or delete spreadsheets
+via this API. For those operations, you must use the <a href="/google-apps/documents-list">Google Documents List
+API</a>.</p>
+<p>This API operation is accessible only with authorized requests.  Requests that
+have not been authorized cannot access this feed (i.e. this feed is not
+public).</p>
+<p class="alert-message info note"><strong>Note:</strong><span> The spreadsheets feed only supports the <code>private</code> visibility and the
+<code>full</code> projection.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>You can request a feed containing a list of the currently authenticated
+    user's spreadsheets by sending an authenticated <code>GET</code> request to the
+    following URL:</p><pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/spreadsheets/private/full
+</code></pre><p>The result is a feed that lists all of user's spreadsheets.</p><p>An entry in the spreadsheets feed might resemble the following. The
+following example has been edited a little to make it a little more
+readable by humans; in particular, a real spreadsheets feed contains actual
+spreadsheet IDs where the following listing says key.</p><pre class="prettyprint"><code>&lt;entry gd:etag=""FDHGCHnx12""&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/spreadsheets/tNXTXMh83yMWLVJfEgOWTvQ&lt;/id&gt;
+  &lt;updated&gt;2011-05-27T15:08:37.102Z&lt;/updated&gt;
+  &lt;category scheme="http://schemas.google.com/spreadsheets/2006" term="http://schemas.google.com/spreadsheets/2006#spreadsheet"/&gt;
+  &lt;title&gt;My Spreadsheet&lt;/title&gt;
+  &lt;content type="application/atom+xml;type=feed" src="https://spreadsheets.google.com/feeds/worksheets/tNXTXMh83yMWLVJfEgOWTvQ/private/full"/&gt;
+  &lt;link rel="http://schemas.google.com/spreadsheets/2006#tablesfeed" type="application/atom+xml" href="https://spreadsheets.google.com/feeds/tNXTXMh83yMWLVJfEgOWTvQ/tables"/&gt;
+  &lt;link rel="alternate" type="text/html" href="https://spreadsheets.google.com/ccc?key=0Ak8c_1IVge120199weAHSjDHf1XTFZKZkVnT1dUdlE"/&gt;
+  &lt;link rel="self" type="application/atom+xml" href="https://spreadsheets.google.com/feeds/spreadsheets/private/full/tNXTXMh83yMWLVJfEgOWTvQ"/&gt;
+  &lt;author&gt;
+    &lt;name&gt;joe&lt;/name&gt;
+    &lt;email&gt;joe@yourdomain.com&lt;/email&gt;
+  &lt;/author&gt;
+&lt;/entry&gt;
+</code></pre><p>Note that the key value that appears here is the same as the key value that
+appears in the URL displayed in the address bar of your browser window when
+you open the spreadsheet manually.</p><p>The URI given in the <code>link</code> element with
+<code>rel="http://schemas.google.com/spreadsheets/2006#tablesfeed"</code> is the
+URI of the worksheets feed for that spreadsheet, which lists all the
+worksheets the user has access to in that spreadsheet. If that URI ends
+with <code>/private/values</code>, that indicates that the current authenticated user
+can only view the spreadsheet, not edit it. If it ends with
+<code>/private/full</code>, that indicates that the current authenticated user is
+authorized to add and edit data in the worksheets.</p><p class="alert-message info note"><strong>Note:</strong><span> User access levels are set in the GUI. If a user owns a given
+worksheet or is listed as an editor, then they have read/write access; if
+they're listed only as a viewer, then they have read-only access. In
+addition, if the worksheet is published then even unauthenticated users and
+users not listed as viewers have read access.</span></p></section><section><h3>Java</h3><p>The following code fetches a list of all spreadsheets owned or shared with
+    an authorized user, and prints out the title of each spreadsheet.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    // Iterate through all of the spreadsheets returned
+    for (SpreadsheetEntry spreadsheet : spreadsheets) {
+      // Print the title of this spreadsheet to the screen
+      System.out.println(spreadsheet.getTitle().getPlainText());
+    }
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code fetches a list of all spreadsheets owned or shared with an
+    authorized user, and prints out the title of each spreadsheet.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      // Iterate through all of the spreadsheets returned
+      foreach (SpreadsheetEntry entry in feed.Entries)
+      {
+        // Print the title of this spreadsheet to the screen
+        Console.WriteLine(entry.Title.Text);
+      }
+    }
+  }
+}
+</code></pre></section></div>
+<p>If no entries are returned, it means there are no spreadsheets created or
+shared by this account. Creating a spreadsheet and requesting the feed again
+yields a spreadsheet entry.</p>
+<h2 id="working_with_worksheets">Working with worksheets</h2>
+<p>A given spreadsheet may contain multiple worksheets. Each spreadsheet has a
+worksheets feed listing all of its worksheets.</p>
+<p>The following sections describe how to get a set of worksheets, add a worksheet
+to a spreadsheet, update the metadata of a worksheet, and remove a worksheet
+from the spreadsheet.</p>
+<h3 id="retrieving_information_about_worksheets">Retrieving information about worksheets</h3>
+<p>A set of metadata can be fetched about each worksheet, as well as information
+that enables further manipulation of data in the worksheet.</p>
+<p class="alert-message info note"><strong>Note:</strong><span> The worksheets feed supports the <code>private</code> and <code>public</code> visibilities, and
+both the <code>full</code> and <code>basic</code> projections.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To determine the URL of a given spreadsheet's worksheets feed, find that
+    spreadsheet's entry in the spreadsheets feed, as described in the previous
+    section. Then examine the <code>link</code> element that has
+    <code>rel="http://schemas.google.com/spreadsheets/2006#tablesfeed"</code>. That
+    element's href value provides the URL for that spreadsheet's worksheets
+    feed.</p><p>To request a list of worksheets in a given spreadsheet, issue a <code>GET</code>
+request to that URL, with an appropriate authorization header:</p><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/worksheets/key/private/full
+</code></pre><p>The API returns a feed resembling the following.  The word <code>key</code> in the
+following example is used only to make the sample more readable.</p><pre class="prettyprint"><code>&lt;feed xmlns="http://www.w3.org/2005/Atom"
+    xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/"
+    xmlns:gs="http://schemas.google.com/spreadsheets/2006"
+    xmlns:gd="http://schemas.google.com/g/2005"
+    gd:etag='W/"D0cERnk-eip7ImA9WBBXGEg."'&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/worksheets/key/private/full&lt;/id&gt;
+  &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+  &lt;title type="text"&gt;Groceries R Us&lt;/title&gt;
+  &lt;link rel="alternate" type="text/html"
+      href="https://spreadsheets.google.com/ccc?key=key"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#feed"
+      type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/worksheets/key/private/full"/&gt;
+  &lt;link rel="self" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/worksheets/key/private/full"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#post" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/worksheets/key/private/full"/&gt;
+  &lt;author&gt;
+    &lt;name&gt;Fitzwilliam Darcy&lt;/name&gt;
+    &lt;email&gt;fitz@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;openSearch:totalResults&gt;1&lt;/openSearch:totalResults&gt;
+  &lt;openSearch:startIndex&gt;1&lt;/openSearch:startIndex&gt;
+  &lt;openSearch:itemsPerPage&gt;1&lt;/openSearch:itemsPerPage&gt;
+  &lt;entry gd:etag='"YDwqeyI."'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+    &lt;title type="text"&gt;Sheet1&lt;/title&gt;
+    &lt;content type="text"&gt;Sheet1&lt;/content&gt;
+    &lt;link rel="http://schemas.google.com/spreadsheets/2006#listfeed"
+        type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+    &lt;link rel="http://schemas.google.com/spreadsheets/2006#cellsfeed"
+        type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full"/&gt;
+    &lt;link rel="self" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId/version"/&gt;
+    &lt;gs:rowCount&gt;100&lt;/gs:rowCount&gt;
+    &lt;gs:colCount&gt;20&lt;/gs:colCount&gt;
+  &lt;/entry&gt;
+&lt;/feed&gt;
+</code></pre></section><section><h3>Java</h3><p>The following code fetches a list of worksheets for the first spreadsheet
+    in a feed.  It first prints out the title of the spreadsheet, and then
+    prints a list of all worksheets in that spreadsheet.  Each item in the
+    list shows the title, number of rows, and number of columns of the
+    worksheet.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Make a request to the API to fetch information about all
+    // worksheets in the spreadsheet.
+    List&lt;WorksheetEntry&gt; worksheets = spreadsheet.getWorksheets();
+
+    // Iterate through each worksheet in the spreadsheet.
+    for (WorksheetEntry worksheet : worksheets) {
+      // Get the worksheet's title, row count, and column count.
+      String title = worksheet.getTitle().getPlainText();
+      int rowCount = worksheet.getRowCount();
+      int colCount = worksheet.getColCount();
+
+      // Print the fetched information to the screen for this worksheet.
+      System.out.println("\t" + title + "- rows:" + rowCount + " cols: " + colCount);
+    }
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code fetches a list of worksheets for the first spreadsheet
+    in a feed.  It first prints out the title of the spreadsheet, and then
+    prints a list of all worksheets in that spreadsheet.  Each worksheet in the
+    list shows the title, number of rows, and number of columns of the
+    worksheet.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Make a request to the API to fetch information about all
+      // worksheets in the spreadsheet.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+
+      // Iterate through each worksheet in the spreadsheet.
+      foreach (WorksheetEntry entry in wsFeed.Entries)
+      {
+        // Get the worksheet's title, row count, and column count.
+        string title = entry.Title.Text;
+        int rowCount = entry.Rows;
+        int colCount = entry.Cols;
+
+        // Print the fetched information to the screen for this worksheet.
+        Console.WriteLine(title + "- rows:" + rowCount + " cols: " + colCount);
+      }
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="adding_a_worksheet">Adding a worksheet</h3>
+<p>Worksheets can be created using the Spreadsheets API. To do this, an
+application must make a request to the API containing information about the new
+worksheet, like its title and initial size.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To add a worksheet to the spreadsheet, authenticate and authorize, then
+    simply make the following HTTP request to a spreadsheet's worksheet feed
+    URL. You must be authenticated and authorized to add worksheets via the
+    Spreadsheets API.</p><pre class="prettyprint"><code>POST https://spreadsheets.google.com/feeds/worksheets/key/private/full
+Content-Type: application/atom+xml
+
+&lt;entry xmlns="http://www.w3.org/2005/Atom"
+    xmlns:gs="http://schemas.google.com/spreadsheets/2006"&gt;
+  &lt;title&gt;Expenses&lt;/title&gt;
+  &lt;gs:rowCount&gt;50&lt;/gs:rowCount&gt;
+  &lt;gs:colCount&gt;10&lt;/gs:colCount&gt;
+&lt;/entry&gt;
+</code></pre></section><section><h3>Java</h3><p>The following code adds a new worksheet to the first spreadsheet returned
+    from the API.  The title of the created worksheet is <code>New Worksheet</code>.  The
+    new worksheet has 10 columns and 20 rows.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Create a local representation of the new worksheet.
+    WorksheetEntry worksheet = new WorksheetEntry();
+    worksheet.setTitle(new PlainTextConstruct("New Worksheet"));
+    worksheet.setColCount(10);
+    worksheet.setRowCount(20);
+
+    // Send the local representation of the worksheet to the API for
+    // creation.  The URL to use here is the worksheet feed URL of our
+    // spreadsheet.
+    URL worksheetFeedUrl = spreadsheet.getWorksheetFeedUrl();
+    service.insert(worksheetFeedUrl, worksheet);
+
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code adds a new worksheet to the first spreadsheet returned
+    from the API.  The title of the created worksheet is <code>New Worksheet</code>.  The
+    new worksheet has 10 columns and 20 rows.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Create a local representation of the new worksheet.
+      WorksheetEntry worksheet = new WorksheetEntry();
+      worksheet.Title.Text = "New Worksheet";
+      worksheet.Cols = 10;
+      worksheet.Rows = 20;
+
+      // Send the local representation of the worksheet to the API for
+      // creation.  The URL to use here is the worksheet feed URL of our
+      // spreadsheet.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      service.Insert(wsFeed, worksheet);
+    }
+  }
+}
+</code></pre></section></div>
+<p>The new worksheet will appear after the last worksheet in the Spreadsheets UI.</p>
+<p class="alert-message special"><strong>Important:</strong><span> It is currently not possible to set the order of worksheets in the
+UI via the Spreadsheets API, outside of deleting and recreating all worksheets.</span></p>
+<h3 id="modifying_a_worksheets_title_and_size">Modifying a worksheet's title and size</h3>
+<p>You can modify the title and size of a worksheet with the Spreadsheets API by
+sending a request to the API containing the new properties of the worksheet. If
+you need to modify the actual content of cells, see <a href="#adding_a_list_row">Adding a list
+row</a>, or <a href="#changing_contents_of_a_cell">Changing contents of a
+cell</a>.</p>
+<p class="alert-message info note"><strong>Note:</strong><span> Metadata includes the title of the worksheet and the number of rows and
+columns.</span></p>
+<p class="alert-message warning"><strong>Warning:</strong><span> Setting the number of rows or columns to less than the original will
+delete the cells and contents that do not exist within the new boundaries
+WITHOUT WARNING.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To change the title or size of a worksheet, begin by getting the desired
+    worksheet from the worksheet feed. Then update the worksheet's metadata and
+    send a <code>PUT</code> request with the desired entry contents to the URL provided in
+    an edit link. The <code>edit</code> URL is highlighted in the XML below.</p><pre class="prettyprint"><code>&lt;entry&gt;
+  &lt;id&gt;
+    https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId
+  &lt;/id&gt;
+  &lt;updated&gt;2007-07-30T18:51:30.666Z&lt;/updated&gt;
+  &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+    term="http://schemas.google.com/spreadsheets/2006#worksheet"/&gt;
+  &lt;title type="text"&gt;Income&lt;/title&gt;
+  &lt;content type="text"&gt;Expenses&lt;/content&gt;
+  &lt;link rel="http://schemas.google.com/spreadsheets/2006#listfeed"
+    type="application/atom+xml" href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+  &lt;link rel="http://schemas.google.com/spreadsheets/2006#cellsfeed"
+    type="application/atom+xml" href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full"/&gt;
+  &lt;link rel="self" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId"/&gt;
+  &lt;link rel="edit" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId/version"/&gt;
+  &lt;gs:rowCount&gt;45&lt;/gs:rowCount&gt;
+  &lt;gs:colCount&gt;15&lt;/gs:colCount&gt;
+&lt;/entry&gt;
+</code></pre></section><section><h3>Java</h3><p>The following code changes the title and dimensions of the first worksheet
+    returned for the first spreadsheet in the spreadsheets feed.  The title of
+    the worksheet is changed to <code>Updated Worksheet</code>, the number of columns is
+    set to 5, and the number of rows is set to 15.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Update the local representation of the worksheet.
+    worksheet.setTitle(new PlainTextConstruct("Updated Worksheet"));
+    worksheet.setColCount(5);
+    worksheet.setRowCount(15);
+
+    // Send the local representation of the worksheet to the API for
+    // modification.
+    worksheet.update();
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code changes the title and dimensions of the first worksheet
+    returned for the first spreadsheet in the spreadsheets feed.  The title of
+    the worksheet is changed to <code>Updated Worksheet</code>, the number of columns is
+    set to 5, and the number of rows is set to 15.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Update the local representation of the worksheet.
+      worksheet.Title.Text = "Updated Worksheet";
+      worksheet.Cols = 5;
+      worksheet.Rows = 15;
+
+      // Send the local representation of the worksheet to the API for
+      // modification.
+      worksheet.Update();
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="deleting_a_worksheet">Deleting a worksheet</h3>
+<p>Worksheets can be deleted from a spreadsheet using the Spreadsheets API.</p>
+<p>When a worksheet is deleted, all worksheets to the right of it in the
+Spreadsheets UI will be shifted left one position.  The ID of the other
+worksheets will not change, however.</p>
+<p class="alert-message warning"><strong>Warning:</strong><span> If you delete a worksheet, that worksheet is completely removed from
+the spreadsheet and all data contained on that worksheet is discarded.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To delete a worksheet, perform a <code>DELETE</code> request on the <code>edit</code> URL of a
+    worksheet entry after obtaining it as described above.</p><pre class="prettyprint"><code>DELETE https://spreadsheets.google.com/feeds/worksheets/key/private/full/worksheetId/version
+</code></pre></section><section><h3>Java</h3><p>The following code deletes the first worksheet returned for the first
+    spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Delete the worksheet via the API.
+    worksheet.delete();
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code deletes the first worksheet returned for the first
+    spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Delete the worksheet via the API.
+      worksheet.Delete();
+    }
+  }
+}
+</code></pre></section></div>
+<h2 id="working_with_list-based_feeds">Working with list-based feeds</h2>
+<p>A given worksheet generally contains multiple rows, each containing multiple
+cells. You can request data from the worksheet either as a list-based feed, in
+which each entry represents a row, or as a cell-based feed, in which each entry
+represents a single cell. For information on cell-based feeds, see <a href="#working_with_cell-based_feeds">Working
+with cell-based feeds</a>.</p>
+<p>The following sections describe how to get a list-based feed of rows in a
+worksheet, and how to manage those rows.  Also discussed is how to query for
+specific rows in a worksheet using advanced query parameters.</p>
+<p class="alert-message warning"><strong>Warning:</strong><span> The list feed writes static values into cells that have formulas
+applied to them.  To modify cells with formulas while keeping the formulas
+applied, use the <a href="#working_with_cell-based_feeds">Cells feed</a>.</span></p>
+<p>The list feed makes some assumptions about how the data is laid out in the
+spreadsheet.</p>
+<p>In particular, the list feed treats the first row of the worksheet as a header
+row. The API dynamically creates XML elements named after the contents of
+header-row cells. Users needing list-based API feed access to a worksheet must
+only put column headers in the first row of the worksheet.</p>
+<p class="alert-message warning"><strong>Warning:</strong><span> If users modify the contents of the header row in a worksheet, an
+application may break.</span></p>
+<p>Applications needing to dynamically determine the contents of the header row
+must use the <a href="#working_with_cell-based_feeds">Cells feed</a> to access the
+contents of the header row by its position.</p>
+<p class="alert-message special"><strong>Important:</strong><span> For a column to be accessible in a list feed, it must have data in
+its header cell.  Columns without data in the header cell are not exposed in
+the list feed.</span></p>
+<h3 id="retrieving_a_list-based_feed">Retrieving a list-based feed</h3>
+<p>The list feed contains all rows after the first row up to the first blank row.
+The first blank row terminates the data set. If expected data isn't appearing
+in a feed, check the worksheet manually to see whether there's an unexpected
+blank row in the middle of the data. In particular, if the second row of the
+spreadsheet is blank, then the list feed will contain no data.</p>
+<p>A row in a list feed is as many columns wide as the worksheet itself.</p>
+<p class="alert-message info note"><strong>Note:</strong><span> The list feed supports both the <code>private</code> and <code>public</code> visibilities, and
+both the <code>full</code> and <code>basic</code> projections.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To determine the URL of a list-based feed for a given worksheet, get the
+    worksheets feed and examine the <code>content</code> element in which src is the list
+    feed's URI.</p><p>To retrieve a list-based feed, send the following <code>GET</code> request, using the
+list feed's URI and an appropriate authorization header:</p><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full
+</code></pre><p>The API returns a feed resembling the following:</p><pre class="prettyprint"><code>&lt;feed xmlns="http://www.w3.org/2005/Atom"
+    xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/"
+    xmlns:gsx="http://schemas.google.com/spreadsheets/2006/extended"
+    xmlns:gd="http://schemas.google.com/g/2005"
+    gd:etag='W/"D0cERnk-eip7ImA9WBBXGEg."'&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full&lt;/id&gt;
+  &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+  &lt;title type="text"&gt;Sheet1&lt;/title&gt;
+  &lt;content type="application/atom+xml;type=feed"
+      src="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+  &lt;link rel="alternate" type="text/html"
+      href="https://spreadsheets.google.com/ccc?key=key"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#feed"
+      type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#post"
+      type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+  &lt;link rel="self" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full"/&gt;
+  &lt;author&gt;
+    &lt;name&gt;Fitzwilliam Darcy&lt;/name&gt;
+    &lt;email&gt;fitz@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;openSearch:totalResults&gt;8&lt;/openSearch:totalResults&gt;
+  &lt;openSearch:startIndex&gt;1&lt;/openSearch:startIndex&gt;
+  &lt;openSearch:itemsPerPage&gt;8&lt;/openSearch:itemsPerPage&gt;
+  &lt;entry gd:etag='"S0wCTlpIIip7ImA0X0QI"'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+    &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+        term="http://schemas.google.com/spreadsheets/2006#list"/&gt;
+    &lt;title type="text"&gt;Bingley&lt;/title&gt;
+    &lt;content type="text"&gt;Hours: 10, Items: 2, IPM: 0.0033&lt;/content&gt;
+    &lt;link rel="self" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId/version"/&gt;
+    &lt;gsx:name&gt;Bingley&lt;/gsx:name&gt;
+    &lt;gsx:hours&gt;10&lt;/gsx:hours&gt;
+    &lt;gsx:items&gt;2&lt;/gsx:items&gt;
+    &lt;gsx:ipm&gt;0.0033&lt;/gsx:ipm&gt;
+  &lt;/entry&gt;
+
+  ...
+
+  &lt;entry gd:etag='"AxQDSXxjfyp7ImA0ChJVSBI."'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+    &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+        term="http://schemas.google.com/spreadsheets/2006#list"/&gt;
+    &lt;title type="text"&gt;Charlotte&lt;/title&gt;
+    &lt;content type="text"&gt;Hours: 60, Items: 18000, IPM: 5&lt;/content&gt;
+    &lt;link rel="self" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+        href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId/version"/&gt;
+    &lt;gsx:name&gt;Charlotte&lt;/gsx:name&gt;
+    &lt;gsx:hours&gt;60&lt;/gsx:hours&gt;
+    &lt;gsx:items&gt;18000&lt;/gsx:items&gt;
+    &lt;gsx:ipm&gt;5&lt;/gsx:ipm&gt;
+  &lt;/entry&gt;
+&lt;/feed&gt;
+</code></pre><p>Each entry represents a row in the worksheet. The <code>title</code> element contains
+the contents of the first cell in the row, and the <code>content</code> element
+contains a textual representation of the data from all the other cells in
+the row.</p><p>Each item in the gsx namespace represents the contents of a cell in the
+row, with elements in the <code>gsx</code> namespace named after the contents of the
+header cells -- that is, the cells in the first row of the worksheet. If a
+particular header cell is empty, then a unique column ID is used for the
+gsx element name.  If the header cell's content contains a space or other
+non-alphanumeric character, it will be removed in the <code>gsx</code> element name.</p></section><section><h3>Java</h3><p>The following code prints all rows of the first worksheet returned for the
+    first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the list feed of the worksheet.
+    URL listFeedUrl = worksheet.getListFeedUrl();
+    ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
+
+    // Iterate through each row, printing its cell values.
+    for (ListEntry row : feed.getEntries()) {
+      // Print the first column's cell value
+      System.out.print(row.getTitle().getPlainText() + "\t");
+      // Iterate over the remaining columns, and print each cell value
+      for (String tag : row.getCustomElements().getTags()) {
+        System.out.print(row.getCustomElements().getValue(tag) + "\t");
+      }
+      System.out.println();
+    }
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code prints all rows of the first worksheet returned for the
+    first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Define the URL to request the list feed of the worksheet.
+      AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+      // Fetch the list feed of the worksheet.
+      ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+      ListFeed listFeed = service.Query(listQuery);
+
+      // Iterate through each row, printing its cell values.
+      foreach (ListEntry row in listFeed.Entries)
+      {
+        // Print the first column's cell value
+        Console.WriteLine(row.Title.Text);
+        // Iterate over the remaining columns, and print each cell value
+        foreach (ListEntry.Custom element in row.Elements)
+        {
+          Console.WriteLine(element.Value);
+        }
+      }
+    }
+  }
+}
+</code></pre></section></div>
+<p class="alert-message special"><strong>Important:</strong><span> Rows are ordered in the same order in which they appear in the
+worksheet user-interface, unless the query URL includes the <code>orderby</code> query
+parameter.</span></p>
+<h3 id="sorting_rows">Sorting rows</h3>
+<p>By default, rows in the list feed appear in the same order as the corresponding
+rows in the user-interface; that is, they're in order by row number.</p>
+<p>To get rows in reverse order, send the following request, using the reverse
+query parameter to specify the sort order.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full?reverse=true
+</code></pre></section><section><h3>Java</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+URL listFeedUrl = new URI(worksheet.getListFeedUrl().toString() + "?reverse=true").toURL();
+</code></pre></section><section><h3>.NET</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+listQuery.Reverse = true;
+</code></pre></section></div>
+<p>To sort the values in ascending order by a particular column, rather than by
+row number, use the <code>orderby</code> query parameter.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full?orderby=lastname
+</code></pre></section><section><h3>Java</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+URL listFeedUrl = new URI(worksheet.getListFeedUrl().toString() + "?orderby=lastname").toURL();
+</code></pre></section><section><h3>.NET</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+listQuery.OrderByColumn = "lastname";
+</code></pre></section></div>
+<p><code>reverse</code> and <code>orderby</code> can also be combined in order to sort by a column in
+descending order.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full?reverse=true&amp;orderby=lastname
+</code></pre></section><section><h3>Java</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+URL listFeedUrl = new URI(worksheet.getListFeedUrl().toString()
+    + "?reverse=true&amp;orderby=lastname").toURL();
+</code></pre></section><section><h3>.NET</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+listQuery.Reverse = true;
+listQuery.OrderByColumn = "lastname";
+</code></pre></section></div>
+<h3 id="sending_a_structured_query_for_rows">Sending a structured query for rows</h3>
+<p>Use the structured query parameter <code>sq</code> to produce a feed with entries that
+meet the specified criteria. To find all people in a worksheet older than 25
+years, with a height less than 175cm, one would use the query:</p>
+<pre class="prettyprint"><code>age &gt; 25 and height &lt; 175
+</code></pre>
+<p>To run this query using the API directly, add it as the value of the <code>sq</code>
+parameter.</p>
+<p class="alert-message info note"><strong>Note:</strong><span> Always URL-encode query parameters.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full?sq=age&gt;25%20and%20height&lt;175
+</code></pre></section><section><h3>Java</h3><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+URL listFeedUrl = new URI(worksheet.getListFeedUrl().toString()
+    + "?sq=age&gt;25%20and%20height&lt;175").toURL();
+</code></pre></section><section><h3>.NET</h3><p>The GData .NET client library takes care of URL-encoding the query
+    parameters. .NET developers do not need to do anything to
+    URL-encode them.</p><pre class="prettyprint"><code>// Based on the sample above for getting rows in a worksheet
+listQuery.SpreadsheetQuery = "age &gt; 25 and height &lt; 175";
+</code></pre></section></div>
+<p>The queries you can perform here are somewhat limited, because you cannot query
+over columns that, for instance, begin with a digit. The names used here must
+match their respective element names in lists feed results.</p>
+<h3 id="adding_a_list_row">Adding a list row</h3>
+<p>Adding rows to a worksheet via the list feed involves specifying values for each column in the worksheet, and sending this row representation to the API.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To add a row to a worksheet, start by creating an <code>entry</code> element
+    containing the relevant data:</p><pre class="prettyprint"><code>&lt;entry xmlns="http://www.w3.org/2005/Atom"
+    xmlns:gsx="http://schemas.google.com/spreadsheets/2006/extended"&gt;
+  &lt;gsx:hours&gt;1&lt;/gsx:hours&gt;
+  &lt;gsx:ipm&gt;1&lt;/gsx:ipm&gt;
+  &lt;gsx:items&gt;60&lt;/gsx:items&gt;
+  &lt;gsx:name&gt;Elizabeth Bennet&lt;/gsx:name&gt;
+&lt;/entry&gt;
+</code></pre><p>Then determine the appropriate URL to send the entry to, known as the
+<code>POST</code> URL.  You can find the <code>POST</code> URL in the list feed's <code>link</code> element
+that has <code>rel="http://schemas.google.com/g/2005#post"</code>.</p><p>Next, do any necessary authentication, and create an <code>Authorization</code> header
+for a new <code>POST</code> request as described in the authentication sections of
+this document.</p><p>In the body of the <code>POST</code> request, place the Atom <code>entry</code> element you
+created above, using the <code>application/atom+xml</code> content type.</p><p>Now, send the request to the <code>POST</code> URL:</p><pre class="prettyprint"><code>POST https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full
+</code></pre></section><section><h3>Java</h3><p>The following code inserts a new row into the first worksheet of the first
+spreadsheet in the spreadsheets feed. The row has the data:</p><p><code>{firstname: 'Joe', lastname: 'Smith', age: 26, height: 176}</code></p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the list feed of the worksheet.
+    URL listFeedUrl = worksheet.getListFeedUrl();
+    ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
+
+    // Create a local representation of the new row.
+    ListEntry row = new ListEntry();
+    row.getCustomElements().setValueLocal("firstname", "Joe");
+    row.getCustomElements().setValueLocal("lastname", "Smith");
+    row.getCustomElements().setValueLocal("age", "26");
+    row.getCustomElements().setValueLocal("height", "176");
+
+    // Send the new row to the API for insertion.
+    row = service.insert(listFeedUrl, row);
+
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code inserts a new row into the first worksheet of the first
+    spreadsheet in the spreadsheets feed. The row has the data:</p><p><code>{firstname: 'Joe', lastname: 'Smith', age: 26, height: 176}</code></p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Define the URL to request the list feed of the worksheet.
+      AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+      // Fetch the list feed of the worksheet.
+      ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+      ListFeed listFeed = service.Query(listQuery);
+
+      // Create a local representation of the new row.
+      ListEntry row = new ListEntry();
+      row.Elements.Add(new ListEntry.Custom() { LocalName = "firstname", Value = "Joe" });
+      row.Elements.Add(new ListEntry.Custom() { LocalName = "lastname", Value = "Smith" });
+      row.Elements.Add(new ListEntry.Custom() { LocalName = "age", Value = "26" });
+      row.Elements.Add(new ListEntry.Custom() { LocalName = "height", Value = "176" });
+
+      // Send the new row to the API for insertion.
+      service.Insert(listFeed, row);
+    }
+  }
+}
+</code></pre></section></div>
+<p>The API inserts the new row immediately after the last row that appears in the
+list feed, which is to say immediately before the first entirely blank row.</p>
+<h3 id="updating_a_list_row">Updating a list row</h3>
+<p>The Spreadsheets API allows rows to be manipulated in place.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To update the contents of an existing row, first retrieve the row to
+update, modify it as desired, and then send a <code>PUT</code> request, with the
+updated row in the message body, to the row's <code>edit</code> URL.</p><p>Be sure that the <code>id</code> value in the entry you PUT exactly matches the <code>id</code>
+of the existing entry. The <code>edit</code> URL is highlighted in the following row
+entry:</p><pre class="prettyprint"><code>&lt;entry gd:etag='"S0wCTlpIIip7ImA0X0QI"'&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId&lt;/id&gt;
+  &lt;updated&gt;2006-11-17T18:23:45.173Z&lt;/updated&gt;
+  &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+    term="http://schemas.google.com/spreadsheets/2006#list"/&gt;
+  &lt;title type="text"&gt;Bingley&lt;/title&gt;
+  &lt;content type="text"&gt;Hours: 10, Items: 2, IPM: 0.0033&lt;/content&gt;
+  &lt;link rel="self" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId"/&gt;
+  &lt;link rel="edit" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId/version"/&gt;
+  &lt;gsx:name&gt;Bingley&lt;/gsx:name&gt;
+  &lt;gsx:hours&gt;20&lt;/gsx:hours&gt;
+  &lt;gsx:items&gt;4&lt;/gsx:items&gt;
+  &lt;gsx:ipm&gt;0.0033&lt;/gsx:ipm&gt;
+&lt;/entry&gt;
+</code></pre></section><section><h3>Java</h3><p>The following code snippet updates the first row of the first worksheet of
+the first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the list feed of the worksheet.
+    URL listFeedUrl = worksheet.getListFeedUrl();
+    ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
+
+    // TODO: Choose a row more intelligently based on your app's needs.
+    ListEntry row = feed.getEntries.get(0);
+
+    // Update the row's data.
+    row.getCustomElements().setValueLocal("firstname", "Sarah");
+    row.getCustomElements().setValueLocal("lastname", "Hunt");
+    row.getCustomElements().setValueLocal("age", "32");
+    row.getCustomElements().setValueLocal("height", "154");
+
+    // Save the row using the API.
+    row.update();
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code snippet updates the first row of the first worksheet of
+    the first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Define the URL to request the list feed of the worksheet.
+      AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+      // Fetch the list feed of the worksheet.
+      ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+      ListFeed listFeed = service.Query(listQuery);
+
+      // TODO: Choose a row more intelligently based on your app's needs.
+      ListEntry row = (ListEntry)listFeed.Entries[0];
+
+      // Update the row's data.
+      foreach (ListEntry.Custom element in row.Elements)
+      {
+        if (element.LocalName == "firstname")
+        {
+          element.Value = "Sarah";
+        }
+        if (element.LocalName == "lastname")
+        {
+          element.Value = "Hunt";
+        }
+        if (element.LocalName == "age")
+        {
+          element.Value = "32";
+        }
+        if (element.LocalName == "height")
+        {
+          element.Value = "154";
+        }
+      }
+
+      // Save the row using the API.
+      row.Update();
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="deleting_a_list_row">Deleting a list row</h3>
+<p>The Spreadsheets API supports deleting rows in place.  When a row is deleted,
+all rows beneath that row are pushed up by one.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To delete a row, first retrieve the row to delete, then send a <code>DELETE</code>
+    request to the row's <code>edit</code> URL. This is the same URL used to update the
+    row.</p><pre class="prettyprint"><code>DELETE https://spreadsheets.google.com/feeds/list/key/worksheetId/private/full/rowId/rowVersion
+</code></pre><p>If you want to make sure that you don't delete a row that has been changed
+by another client since you retrieved it, include an HTTP <code>If-Match</code> header
+that contains the original row's ETag value. You can determine the original
+row's ETag value by examining the <code>entry</code> element's <code>gd:etag</code> attribute.</p><p>If you want to delete the row regardless of whether someone else has
+updated it since you retrieved it, then use If-Match: * and don't include
+the ETag. (In this case, you don't need to retrieve the row before deleting
+it.)</p></section><section><h3>Java</h3><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the list feed of the worksheet.
+    URL listFeedUrl = worksheet.getListFeedUrl();
+    ListFeed listFeed = service.getFeed(listFeedUrl, ListFeed.class);
+
+    // TODO: Choose a row more intelligently based on your app's needs.
+    ListEntry row = feed.getEntries.get(0);
+
+    // Delete the row using the API.
+    row.delete();
+  }
+}
+</code></pre></section><section><h3>.NET</h3><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Define the URL to request the list feed of the worksheet.
+      AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+      // Fetch the list feed of the worksheet.
+      ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+      ListFeed listFeed = service.Query(listQuery);
+
+      // TODO: Choose a row more intelligently based on your app's needs.
+      ListEntry row = (ListEntry)listFeed.Entries[0];
+
+      // Delete the row using the API.
+      row.Delete();
+    }
+  }
+}
+</code></pre></section></div>
+<h2 id="working_with_cell-based_feeds">Working with cell-based feeds</h2>
+<p>In a cell feed, each entry represents a single cell.  Cells are referred to by
+position.</p>
+<p>There are two positioning notations used in Google Spreadsheets.  The first,
+called <code>A1</code> notation, uses characters from the Latin alphabet to indicate the
+column, and integers to indicate the row of a cell.  The second, called <code>R1C1</code>
+notation, uses integers to represent both the column and the row, and precedes
+each by a corresponding <code>R</code> or <code>C</code>, to indicate row or column number.  The
+addresses <code>A1</code> and <code>R1C1</code> are equivalent, as are the addresses <code>B5</code> and <code>R5C2</code>.</p>
+<p>Cell ranges also have notations in Google Spreadsheets, but those are less relevant here.</p>
+<p>Formulas often refer to other cells or cell ranges by their position.  The
+cells feed allows formulas to be set on cells.  However, the API always returns
+cell addresses for formulas on cells in <code>R1C1</code> notation, even if the formula
+was set with <code>A1</code> notation.</p>
+<p>The title of a cell entry is always the <code>A1</code> position of the cell.</p>
+<p>The <code>id</code> URI of a cell entry always contains the <code>R1C1</code> position of the cell.</p>
+<p>The <code>inputValue</code> attribute of a cell entry always contains the value that a
+user would otherwise type into the Google Spreadsheets user interface to
+manipulate the cell (i.e. either a literal value or a formula).  To set a
+formula or a literal value on a cell, provide the text of the formula or value
+as the <code>inputValue</code> attribute. Remember that formulas must start with <code>=</code> to be
+considered a formula.  If a cell contains a formula, the formula is always
+provided as the <code>inputValue</code> when cell entries are returned by the API.</p>
+<p>The <code>numericValue</code> attribute of a cell entry, when present, indicates that the
+cell was determined to have a numeric value, and its numeric value is indicated
+with this attributed.</p>
+<p>The literal value of the cell element is the calculated value of the cell,
+without formatting applied.  If the cell contains a formula, the calculated
+value is given here.  The Spreadsheets API has no concept of formatting, and
+thus cannot manipulate formatting of cells.</p>
+<h3 id="retrieving_a_cell-based_feed">Retrieving a cell-based feed</h3>
+<p class="alert-message info note"><strong>Note:</strong><span> The cells feed supports both the <code>private</code> and <code>public</code> visibilities, and
+both the <code>full</code> and <code>basic</code> projections.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To determine the URL of a cell feed for a given worksheet, get the
+    worksheets feed and examine the <code>link</code> element in which <code>rel</code> is
+    <code>http://schemas.google.com/spreadsheets/2006#cellsfeed</code>. The <code>href</code> value
+    in that element is the cell feed's URI.</p><p>To retrieve a cell-based feed, send the following <code>GET</code> request, using the
+cell feed's URI and an appropriate authorization header:</p><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full
+</code></pre><p>The API returns a feed resembling the following:</p><pre class="prettyprint"><code>&lt;feed xmlns="http://www.w3.org/2005/Atom"
+    xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/"
+    xmlns:gs="http://schemas.google.com/spreadsheets/2006"
+    xmlns:gd="http://schemas.google.com/g/2005"
+    gd:etag='W/"D0cERnk-eip7ImA9WBBXGEg."'&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full&lt;/id&gt;
+  &lt;updated&gt;2006-11-17T18:27:32.543Z&lt;/updated&gt;
+  &lt;title type="text"&gt;Sheet1&lt;/title&gt;
+  &lt;link rel="alternate" type="text/html"
+    href="https://spreadsheets.google.com/ccc?key=key"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full"/&gt;
+  &lt;link rel="http://schemas.google.com/g/2005#post" type="application/atom+xml"
+  &lt;link rel="http://schemas.google.com/g/2005#batch" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/batch"/&gt;
+    href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full"/&gt;
+  &lt;link rel="self" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full"/&gt;
+  &lt;author&gt;
+    &lt;name&gt;Fitzwilliam Darcy&lt;/name&gt;
+    &lt;email&gt;fitz@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;openSearch:startIndex&gt;1&lt;/openSearch:startIndex&gt;
+  &lt;openSearch:itemsPerPage&gt;36&lt;/openSearch:itemsPerPage&gt;
+  &lt;gs:rowCount&gt;100&lt;/gs:rowCount&gt;
+  &lt;gs:colCount&gt;20&lt;/gs:colCount&gt;
+  &lt;entry gd:etag='"ImA9D1APFyp7"'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C1&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:27:32.543Z&lt;/updated&gt;
+    &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+      term="http://schemas.google.com/spreadsheets/2006#cell"/&gt;
+    &lt;title type="text"&gt;A1&lt;/title&gt;
+    &lt;content type="text"&gt;Name&lt;/content&gt;
+    &lt;link rel="self" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C1"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C1/bgvjf"/&gt;
+    &lt;gs:cell row="1" col="1" inputValue="Name"&gt;Name&lt;/gs:cell&gt;
+  &lt;/entry&gt;
+  &lt;entry gd:etag='"YD0PS1YXByp7Ig.."'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C2&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:27:32.543Z&lt;/updated&gt;
+    &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+      term="http://schemas.google.com/spreadsheets/2006#cell"/&gt;
+    &lt;title type="text"&gt;B1&lt;/title&gt;
+    &lt;content type="text"&gt;Hours&lt;/content&gt;
+    &lt;link rel="self" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C2"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R1C2/1pn567"/&gt;
+    &lt;gs:cell row="1" col="2" inputValue="Hours"&gt;Hours&lt;/gs:cell&gt;
+  &lt;/entry&gt;
+
+  ...
+
+  &lt;entry gd:etag='"ImB5CBYSRCp7"'&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R9C4&lt;/id&gt;
+    &lt;updated&gt;2006-11-17T18:27:32.543Z&lt;/updated&gt;
+    &lt;category scheme="http://schemas.google.com/spreadsheets/2006"
+      term="http://schemas.google.com/spreadsheets/2006#cell"/&gt;
+    &lt;title type="text"&gt;D9&lt;/title&gt;
+    &lt;content type="text"&gt;5&lt;/content&gt;
+    &lt;link rel="self" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R9C4"/&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R9C4/srevc"/&gt;
+    &lt;gs:cell row="9" col="4" inputValue="=FLOOR(R[0]C[-1]/(R[0]C[-2]*60),.0001)"
+      numericValue="5.0"&gt;5&lt;/gs:cell&gt;
+  &lt;/entry&gt;
+&lt;/feed&gt;
+</code></pre></section><section><h3>Java</h3><p>The following code prints all of the cells in the first worksheet of the
+    first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the cell feed of the worksheet.
+    URL cellFeedUrl = worksheet.getCellFeedUrl();
+    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+
+    // Iterate through each cell, printing its value.
+    for (CellEntry cell : feed.getEntries()) {
+      // Print the cell's address in A1 notation
+      System.out.print(cell.getTitle().getPlainText() + "\t");
+      // Print the cell's address in R1C1 notation
+      System.out.print(cell.getId().substring(cell.getId().lastIndexOf('/') + 1) + "\t");
+      // Print the cell's formula or text value
+      System.out.print(cell.getCell().getInputValue() + "\t");
+      // Print the cell's calculated value if the cell's value is numeric
+      // Prints empty string if cell's value is not numeric
+      System.out.print(cell.getCell().getNumericValue() + "\t");
+      // Print the cell's displayed value (useful if the cell has a formula)
+      System.out.println(cell.getCell().getValue() + "\t");
+    }
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code prints all of the cells in the first worksheet of the
+    first spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Fetch the cell feed of the worksheet.
+      CellQuery cellQuery = new CellQuery(worksheet.CellFeedLink);
+      CellFeed cellFeed = service.Query(cellQuery);
+
+      // Iterate through each cell, printing its value.
+      foreach (CellEntry cell in cellFeed.Entries)
+      {
+        // Print the cell's address in A1 notation
+        Console.WriteLine(cell.Title.Text);
+        // Print the cell's address in R1C1 notation
+        Console.WriteLine(cell.Id.Uri.Content.Substring(cell.Id.Uri.Content.LastIndexOf("/") + 1));
+        // Print the cell's formula or text value
+        Console.WriteLine(cell.InputValue);
+        // Print the cell's calculated value if the cell's value is numeric
+        // Prints empty string if cell's value is not numeric
+        Console.WriteLine(cell.NumericValue);
+        // Print the cell's displayed value (useful if the cell has a formula)
+        Console.WriteLine(cell.Value);
+      }
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="fetching_specific_rows_or_columns">Fetching specific rows or columns</h3>
+<p>The Spreadsheets API allows users to fetch specific rows or columns from a
+worksheet by providing additional URL parameters when making a request.</p>
+<p class="alert-message warning"><strong>Warning:</strong><span> Column numbers used in these queries are not permanent.  The result of
+the query will change if rows or columns are added or removed.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>To query for every row after the first row, and only the fourth column,
+    send the request:</p><pre class="prettyprint"><code>GET https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full?min-row=2&amp;min-col=4&amp;max-col=4
+</code></pre><p>The response includes all cells in column 4, starting with row 2.</p></section><section><h3>Java</h3><p>The following code prints all of the cells in every row after the first
+    row, and only the fourth column, of the first worksheet of the first
+    spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch column 4, and every row after row 1.
+    URL cellFeedUrl = new URI(worksheet.getCellFeedUrl().toString()
+        + "?min-row=2&amp;min-col=4&amp;max-col=4").toURL();
+    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+
+    // Iterate through each cell, printing its value.
+    for (CellEntry cell : feed.getEntries()) {
+      // Print the cell's address in A1 notation
+      System.out.print(cell.getTitle().getPlainText() + "\t");
+      // Print the cell's address in R1C1 notation
+      System.out.print(cell.getId().substring(cell.getId().lastIndexOf('/') + 1) + "\t");
+      // Print the cell's formula or text value
+      System.out.print(cell.getCell().getInputValue() + "\t");
+      // Print the cell's calculated value if the cell's value is numeric
+      // Prints empty string if cell's value is not numeric
+      System.out.print(cell.getCell().getNumericValue() + "\t");
+      // Print the cell's displayed value (useful if the cell has a formula)
+      System.out.println(cell.getCell().getValue() + "\t");
+    }
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following code prints all of the cells in every row after the first
+    row, and only the fourth column, of the first worksheet of the first
+    spreadsheet in the spreadsheets feed.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Fetch the cell feed of the worksheet.
+      CellQuery cellQuery = new CellQuery(worksheet.CellFeedLink);
+      cellQuery.MinimumRow = 2;
+      cellQuery.MinimumColumn = 4;
+      cellQuery.MaximumColumn = 4;
+      CellFeed cellFeed = service.Query(cellQuery);
+
+      // Iterate through each cell, printing its value.
+      foreach (CellEntry cell in cellFeed.Entries)
+      {
+        // Print the cell's address in A1 notation
+        Console.WriteLine(cell.Title.Text);
+        // Print the cell's address in R1C1 notation
+        Console.WriteLine(cell.Id.Uri.Content.Substring(cell.Id.Uri.Content.LastIndexOf("/") + 1));
+        // Print the cell's formula or text value
+        Console.WriteLine(cell.InputValue);
+        // Print the cell's calculated value if the cell's value is numeric
+        // Prints empty string if cell's value is not numeric
+        Console.WriteLine(cell.NumericValue);
+        // Print the cell's displayed value (useful if the cell has a formula)
+        Console.WriteLine(cell.Value);
+      }
+    }
+  }
+}
+</code></pre></section></div>
+<h3 id="changing_contents_of_a_cell">Changing contents of a cell</h3>
+<p>Cells can be modified in place.  Unlike other feeds, cells are not directly
+added nor deleted.  They are fixed in place, based on the dimensions of a given
+worksheet.  To add or remove cells from a worksheet, use the worksheets feed to
+change the dimension of the worksheet.  To empty a cell, simply update its
+value to be an empty string.</p>
+<p class="alert-message special"><strong>Important:</strong><span> The cells feed allows for setting a formula on a cell by starting
+the cell <code>inputValue</code> with an <code>=</code> character.  The calculated value of the cell
+is provided as the cell's actual value.</span></p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>Note: Use HTTP <code>PUT</code> to change the data in a cell, even if it is empty; the
+    use of <code>POST</code> on empty cells is no longer recommended. To clear a cell,
+    send an entry with an empty content element in your <code>PUT</code> request instead
+    of using <code>DELETE</code>.</p><p>To modify a cell in a worksheet, start by creating an <code>entry</code> element
+containing the relevant data, which in this case is a formula:</p><pre class="prettyprint"><code>&lt;entry xmlns="http://www.w3.org/2005/Atom"
+    xmlns:gs="http://schemas.google.com/spreadsheets/2006"&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C4&lt;/id&gt;
+  &lt;link rel="edit" type="application/atom+xml"
+    href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C4"/&gt;
+  &lt;gs:cell row="2" col="4" inputValue="=SUM(A1:B6)"/&gt;
+&lt;/entry&gt;
+</code></pre><p>Find the <code>edit</code> URL for the desired cell by performing a <code>GET</code> request to
+first find the cell. The edit URL is in the href attribute of a <code>link</code>
+element which has a <code>rel</code> attribute set to <code>edit</code>.</p><p>In the body of the <code>PUT</code> request, place the <code>entry</code> element you created
+above, using the <code>application/atom+xml</code> content type.</p><p>Now, send the <code>PUT</code> request to the appropriate Spreadsheets <code>edit</code> URL
+retrieved above, (replacing key, worksheetId, and cell with their
+appropriate values):</p><pre class="prettyprint"><code>PUT https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/cell
+</code></pre><p>The new data is placed in the specified cell in the worksheet. If the
+specified cell contains data already, it is replaced.</p></section><section><h3>Java</h3><p>The following code updates the value of cell <code>A1</code> to be <code>200</code>.  It then
+    updates the formula of cell <code>B1</code> to be <code>=SUM(A1, 200)</code>.</p><p class="alert-message special"><strong>Important:</strong><span> The method <code>CellEntry.changeInputValueLocal()</code> must be used to
+set the literal value of a cell or the formula of a cell.  The intended
+behavior is determined exactly as it is in the Google Spreadsheets user
+interface.  If the value given begins with an <code>=</code> character, a formula will
+be set.</span></p><pre class="prettyprint"><code>import com.google.gdata.client.spreadsheet.*;
+import com.google.gdata.data.spreadsheet.*;
+import com.google.gdata.util.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+
+public class MySpreadsheetIntegration {
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    SpreadsheetService service =
+        new SpreadsheetService("MySpreadsheetIntegration-v1");
+
+    // TODO: Authorize the service object for a specific user (see other sections)
+
+    // Define the URL to request.  This should never change.
+    URL SPREADSHEET_FEED_URL = new URL(
+        "https://spreadsheets.google.com/feeds/spreadsheets/private/full");
+
+    // Make a request to the API and get all spreadsheets.
+    SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+        SpreadsheetFeed.class);
+    List&lt;SpreadsheetEntry&gt; spreadsheets = feed.getEntries();
+
+    if (spreadsheets.size() == 0) {
+      // TODO: There were no spreadsheets, act accordingly.
+    }
+
+    // TODO: Choose a spreadsheet more intelligently based on your
+    // app's needs.
+    SpreadsheetEntry spreadsheet = spreadsheets.get(0);
+    System.out.println(spreadsheet.getTitle().getPlainText());
+
+    // Get the first worksheet of the first spreadsheet.
+    // TODO: Choose a worksheet more intelligently based on your
+    // app's needs.
+    WorksheetFeed worksheetFeed = service.getFeed(
+        spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+    List&lt;WorksheetEntry&gt; worksheets = worksheetFeed.getEntries();
+    WorksheetEntry worksheet = worksheets.get(0);
+
+    // Fetch the cell feed of the worksheet.
+    URL cellFeedUrl = worksheet.getCellFeedUrl();
+    CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
+
+    // Iterate through each cell, updating its value if necessary.
+    // TODO: Update cell values more intelligently.
+    for (CellEntry cell : feed.getEntries()) {
+      if (cell.getTitle().getPlainText().equals("A1")) {
+        cell.changeInputValueLocal("200");
+        cell.update();
+      } else if (cell.getTitle().getPlainText().equals("B1")) {
+        cell.changeInputValueLocal("=SUM(A1, 200)");
+        cell.update();
+      }
+    }
+  }
+}
+</code></pre><p>Once updated, cell A1 has the value <code>200</code>.  Cell B1 shows the value <code>400</code>,
+but has a numeric value of <code>400.0</code> and an <code>inputValue</code> of <code>=SUM(R1C1,
+200)</code>.</p></section><section><h3>.NET</h3><p>The following code updates the value of cell <code>A1</code> to be <code>200</code>.  It then
+    updates the formula of cell <code>B1</code> to be <code>=SUM(A1, 200)</code>.</p><pre class="prettyprint"><code>using System;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+namespace MySpreadsheetIntegration
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+
+      // TODO: Authorize the service object for a specific user (see other sections)
+
+      // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
+      SpreadsheetQuery query = new SpreadsheetQuery();
+
+      // Make a request to the API and get all spreadsheets.
+      SpreadsheetFeed feed = service.Query(query);
+
+      if (feed.Entries.Count == 0)
+      {
+        // TODO: There were no spreadsheets, act accordingly.
+      }
+
+      // TODO: Choose a spreadsheet more intelligently based on your
+      // app's needs.
+      SpreadsheetEntry spreadsheet = (SpreadsheetEntry)feed.Entries[0];
+      Console.WriteLine(spreadsheet.Title.Text);
+
+      // Get the first worksheet of the first spreadsheet.
+      // TODO: Choose a worksheet more intelligently based on your
+      // app's needs.
+      WorksheetFeed wsFeed = spreadsheet.Worksheets;
+      WorksheetEntry worksheet = (WorksheetEntry)wsFeed.Entries[0];
+
+      // Fetch the cell feed of the worksheet.
+      CellQuery cellQuery = new CellQuery(worksheet.CellFeedLink);
+      CellFeed cellFeed = service.Query(cellQuery);
+
+      // Iterate through each cell, updating its value if necessary.
+      foreach (CellEntry cell in cellFeed.Entries)
+      {
+        if (cell.Title.Text == "A1")
+        {
+          cell.InputValue = "200";
+          cell.Update();
+        }
+        else if (cell.Title.Text == "B1")
+        {
+          cell.InputValue = "=SUM(A1, 200)";
+          cell.Update();
+        }
+      }
+    }
+  }
+}
+</code></pre><p>Once updated, cell A1 has the value <code>200</code>.  Cell B1 shows the value <code>400</code>,
+but has a numeric value of <code>400.0</code> and an <code>inputValue</code> of <code>=SUM(R1C1,
+200)</code>.</p></section></div>
+<p class="alert-message info note"><strong>Note:</strong><span> Even though formula values may be set using A1 notation, the API always
+returns cell addresses in formulas in R1C1 notation.</span></p>
+<h3 id="updating_multiple_cells_with_a_batch_request">Updating multiple cells with a batch request</h3>
+<p>The API supports updating an entire column, row, or other set of cells, in a
+single request.  This is offered to improve performance over making large sets
+of individual requests.  This process is called "batching requests".</p>
+<p class="alert-message special"><strong>Important:</strong><span> Only the cells feed supports batching requests.</span></p>
+<p>A number of batch operations can be combined into a single request.  The two
+types of batch operations supported are <code>query</code> and <code>update</code>.  <code>insert</code> and
+<code>delete</code> are not supported because the cells feed cannot be used to insert or
+delete cells.  Remember that the worksheets feed must be used to do that.</p>
+<p><code>query</code> and <code>update</code> can be combined in any size set, and sent to the API in a
+single request.  The API responds with information on the status of each
+individual operation within the batch.  For <code>query</code> requests, the result is the
+requested cell.  For <code>update</code> requests, the result includes the manipulated
+cell with new values.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3>Protocol</h3><p>Begin by creating a cells feed and setting the feed <code>id</code> to the href value
+    of the <code>POST</code> link, appending <code>/batch</code>. A sample URL may look like:</p><pre class="prettyprint"><code>https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/batch
+</code></pre><p>Then, append all the entries to be updated to the feed as per the XML shown
+below and set the <code>batch:operation</code> to <code>update</code>. Finally, post the feed to
+the cells feed <code>edit</code> link.</p><pre class="prettyprint"><code>&lt;feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:batch="http://schemas.google.com/gdata/batch"
+      xmlns:gs="http://schemas.google.com/spreadsheets/2006"&gt;
+  &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full&lt;/id&gt;
+  &lt;entry&gt;
+    &lt;batch:id&gt;A1&lt;/batch:id&gt;
+    &lt;batch:operation type="update"/&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C4&lt;/id&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C4/version"/&gt;
+    &lt;gs:cell row="2" col="4" inputValue="newData"/&gt;
+  &lt;/entry&gt;
+  ...
+  &lt;entry&gt;
+    &lt;batch:id&gt;A2&lt;/batch:id&gt;
+    &lt;batch:operation type="update"/&gt;
+    &lt;title type="text"&gt;A2&lt;/title&gt;
+    &lt;id&gt;https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C5&lt;/id&gt;
+    &lt;link rel="edit" type="application/atom+xml"
+      href="https://spreadsheets.google.com/feeds/cells/key/worksheetId/private/full/R2C5/version"/&gt;
+    &lt;gs:cell row="2" col="5" inputValue="moreInfo"/&gt;
+  &lt;/entry&gt;
+&lt;/feed&gt;
+</code></pre><p>Each cell entry element appended to the feed element must contain the
+following elements:</p><dl><dt>batch:id</dt><dd>A <code>batch:id</code> element, uniquely identifying each individual cell update within the batch update request. For best results, set this value to some local identifier, so that the response can be identified once retrieved.</dd><dt>batch:operation</dt><dd>A <code>batch:operation</code> element, whose <code>type</code> attribute determines the type of request to be performed (<code>query</code> or <code>update</code>).</dd><dt>id</dt><dd>An <code>id</code> element containing the full URL to the cell to be updated. Be sure to examine the output XML when requesting the cells feed for more details.</dd><dt>link</dt><dd>A <code>link</code> element whose <code>rel</code> attribute is set to <code>edit</code>. The link's <code>type</code> attribute must be set to <code>application/atom+xml</code> and the <code>href</code> attribute must contain the full path to the cell's id (as in the 'id' element discussed above), in the following format: https://google.com/feeds/cells/key/worksheetId/private/full/R1C1CellIdentifier. Refer to the contents of the cells feed for more details.</dd><dt>gs:cell</dt><dd>A <code>gs:cell</code> element, whose <code>row</code> attribute corresponds to the row being updated, whose <code>col</code> attribute corresponds to the column being updated and whose <code>inputValue</code> attribute contains the same information as the value of the content element discussed above, or the new formula for the cell.</dd></dl><p class="alert-message info note"><strong>Note:</strong><span> Only HTTP <code>GET</code> and <code>PUT</code> operations are supported for cells feed
+batch processing. Each element in the batch request should contain
+<code>batch:operation type="query"</code> and <code>batch:operation type="update"</code>
+respectively.</span></p></section><section><h3>Java</h3><p>The following is a complete program for updating large numbers of cells.
+    It uses ClientLogin for authentication and authorization.</p><pre class="prettyprint"><code>import com.google.gdata.client.sample.util.SimpleCommandLineParser;
+import com.google.gdata.client.spreadsheet.FeedURLFactory;
+import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.data.Link;
+import com.google.gdata.data.batch.BatchOperationType;
+import com.google.gdata.data.batch.BatchStatus;
+import com.google.gdata.data.batch.BatchUtils;
+import com.google.gdata.data.spreadsheet.CellEntry;
+import com.google.gdata.data.spreadsheet.CellFeed;
+import com.google.gdata.util.AuthenticationException;
+import com.google.gdata.util.ServiceException;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * A sample application showing how to efficiently use batch updates with the
+ * Spreadsheets API to create new cells.
+ *
+ * The specified spreadsheet key will be filled in with 'RnCn' identifier of
+ * each cell, up to the {@code MAX_ROWS} and {@code MAX_COLS} constants defined
+ * in this class.
+ *
+ * Usage: java BatchCellUpdater --username [user] --password [pass] --key [spreadsheet-key]
+ *
+ * @author Josh Danziger
+ */
+public class BatchCellUpdater {
+
+  /** The number of rows to fill in the destination workbook */
+  private static final int MAX_ROWS = 75;
+
+  /** The number of columns to fill in the destination workbook */
+  private static final int MAX_COLS = 5;
+
+  /**
+   * A basic struct to store cell row/column information and the associated RnCn
+   * identifier.
+   */
+  private static class CellAddress {
+    public final int row;
+    public final int col;
+    public final String idString;
+
+    /**
+     * Constructs a CellAddress representing the specified {@code row} and
+     * {@code col}.  The idString will be set in 'RnCn' notation.
+     */
+    public CellAddress(int row, int col) {
+      this.row = row;
+      this.col = col;
+      this.idString = String.format("R%sC%s", row, col);
+    }
+  }
+
+  public static void main(String[] args)
+      throws AuthenticationException, MalformedURLException, IOException, ServiceException {
+
+    // Command line parsing
+    SimpleCommandLineParser parser = new SimpleCommandLineParser(args);
+    String username = parser.getValue("username", "user", "u");
+    String password = parser.getValue("password", "pass", "p");
+    String key = parser.getValue("key");
+    boolean help = parser.containsKey("help", "h");
+
+    if (help || username == null || password == null) {
+      System.err.print("Usage: java BatchCellUpdater --username [user] --password [pass] --key [spreadsheet-key]\n\n");
+      System.exit(1);
+    }
+
+    long startTime = System.currentTimeMillis();
+
+    // Prepare Spreadsheet Service
+    SpreadsheetService ssSvc = new SpreadsheetService("Batch Cell Demo");
+    ssSvc.setUserCredentials(username, password);
+
+    FeedURLFactory urlFactory = FeedURLFactory.getDefault();
+    URL cellFeedUrl = urlFactory.getCellFeedUrl(key, "od6", "private", "full");
+    CellFeed cellFeed = ssSvc.getFeed(cellFeedUrl, CellFeed.class);
+
+    // Build list of cell addresses to be filled in
+    List&lt;CellAddress&gt; cellAddrs = new ArrayList&lt;CellAddress&gt;();
+    for (int row = 1; row &lt;= MAX_ROWS; ++row) {
+      for (int col = 1; col &lt;= MAX_COLS; ++col) {
+        cellAddrs.add(new CellAddress(row, col));
+      }
+    }
+
+    // Prepare the update
+    // getCellEntryMap is what makes the update fast.
+    Map&lt;String, CellEntry&gt; cellEntries = getCellEntryMap(ssSvc, cellFeedUrl, cellAddrs);
+
+    CellFeed batchRequest = new CellFeed();
+    for (CellAddress cellAddr : cellAddrs) {
+      URL entryUrl = new URL(cellFeedUrl.toString() + "/" + cellAddr.idString);
+      CellEntry batchEntry = new CellEntry(cellEntries.get(cellAddr.idString));
+      batchEntry.changeInputValueLocal(cellAddr.idString);
+      BatchUtils.setBatchId(batchEntry, cellAddr.idString);
+      BatchUtils.setBatchOperationType(batchEntry, BatchOperationType.UPDATE);
+      batchRequest.getEntries().add(batchEntry);
+    }
+
+    // Submit the update
+    Link batchLink = cellFeed.getLink(Link.Rel.FEED_BATCH, Link.Type.ATOM);
+    CellFeed batchResponse = ssSvc.batch(new URL(batchLink.getHref()), batchRequest);
+
+    // Check the results
+    boolean isSuccess = true;
+    for (CellEntry entry : batchResponse.getEntries()) {
+      String batchId = BatchUtils.getBatchId(entry);
+      if (!BatchUtils.isSuccess(entry)) {
+        isSuccess = false;
+        BatchStatus status = BatchUtils.getBatchStatus(entry);
+        System.out.printf("%s failed (%s) %s", batchId, status.getReason(), status.getContent());
+      }
+    }
+
+    System.out.println(isSuccess ? "\nBatch operations successful." : "\nBatch operations failed");
+    System.out.printf("\n%s ms elapsed\n", System.currentTimeMillis() - startTime);
+  }
+
+  /**
+   * Connects to the specified {@link SpreadsheetService} and uses a batch
+   * request to retrieve a {@link CellEntry} for each cell enumerated in {@code
+   * cellAddrs}. Each cell entry is placed into a map keyed by its RnCn
+   * identifier.
+   *
+   * @param ssSvc the spreadsheet service to use.
+   * @param cellFeedUrl url of the cell feed.
+   * @param cellAddrs list of cell addresses to be retrieved.
+   * @return a map consisting of one {@link CellEntry} for each address in {@code
+   *         cellAddrs}
+   */
+  public static Map&lt;String, CellEntry&gt; getCellEntryMap(
+      SpreadsheetService ssSvc, URL cellFeedUrl, List&lt;CellAddress&gt; cellAddrs)
+      throws IOException, ServiceException {
+    CellFeed batchRequest = new CellFeed();
+    for (CellAddress cellId : cellAddrs) {
+      CellEntry batchEntry = new CellEntry(cellId.row, cellId.col, cellId.idString);
+      batchEntry.setId(String.format("%s/%s", cellFeedUrl.toString(), cellId.idString));
+      BatchUtils.setBatchId(batchEntry, cellId.idString);
+      BatchUtils.setBatchOperationType(batchEntry, BatchOperationType.QUERY);
+      batchRequest.getEntries().add(batchEntry);
+    }
+
+    CellFeed cellFeed = ssSvc.getFeed(cellFeedUrl, CellFeed.class);
+    CellFeed queryBatchResponse =
+      ssSvc.batch(new URL(cellFeed.getLink(Link.Rel.FEED_BATCH, Link.Type.ATOM).getHref()),
+                  batchRequest);
+
+    Map&lt;String, CellEntry&gt; cellEntryMap = new HashMap&lt;String, CellEntry&gt;(cellAddrs.size());
+    for (CellEntry entry : queryBatchResponse.getEntries()) {
+      cellEntryMap.put(BatchUtils.getBatchId(entry), entry);
+      System.out.printf("batch %s {CellEntry: id=%s editLink=%s inputValue=%s\n",
+          BatchUtils.getBatchId(entry), entry.getId(), entry.getEditLink().getHref(),
+          entry.getCell().getInputValue());
+    }
+
+    return cellEntryMap;
+  }
+}
+</code></pre></section><section><h3>.NET</h3><p>The following is a complete program for updating large numbers of cells.
+    It uses ClientLogin for authentication and authorization.</p><pre class="prettyprint"><code>using System;
+using System.Collections.Generic;
+using Google.GData.Client;
+using Google.GData.Spreadsheets;
+
+/**
+ * A sample application showing how to efficiently use batch updates with the
+ * Spreadsheets API to create new cells.
+ *
+ * The specified spreadsheet key will be filled in with 'RnCn' identifier of
+ * each cell, up to the {@code MAX_ROWS} and {@code MAX_COLS} constants defined
+ * in this class.
+ *
+ * Usage: BatchCellUpdater [user] [pass] [spreadsheet-key]
+ *
+ * @author Claudio Cherubino
+ */
+namespace MySpreadsheetIntegration
+{
+  class BatchCellUpdater
+  {
+    // The number of rows to fill in the destination workbook
+    const int MAX_ROWS = 75;
+
+    // The number of columns to fill in the destination workbook
+    const int MAX_COLS = 5;
+
+    /**
+     * A basic struct to store cell row/column information and the associated RnCn
+     * identifier.
+     */
+    private class CellAddress
+    {
+      public uint Row;
+      public uint Col;
+      public string IdString;
+
+      /**
+       * Constructs a CellAddress representing the specified {@code row} and
+       * {@code col}. The IdString will be set in 'RnCn' notation.
+       */
+      public CellAddress(uint row, uint col)
+      {
+        this.Row = row;
+        this.Col = col;
+        this.IdString = string.Format("R{0}C{1}", row, col);
+      }
+    }
+
+    static void Main(string[] args)
+    {
+      string username;
+      string password;
+      string key;
+
+      // Command line parsing
+      if (args.Length != 3)
+      {
+        Console.Error.WriteLine("Syntax: BatchCellUpdater &lt;username&gt; &lt;password&gt; &lt;key&gt;");
+        return;
+      }
+      else
+      {
+        username = args[0];
+        password = args[1];
+        key = args[2];
+      }
+
+      // Prepare Spreadsheet Service
+      SpreadsheetsService service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
+      service.setUserCredentials(username, password);
+
+      CellQuery cellQuery = new CellQuery(key, "od6", "private", "full");
+      CellFeed cellFeed = service.Query(cellQuery);
+
+      // Build list of cell addresses to be filled in
+      List&lt;CellAddress&gt; cellAddrs = new List&lt;CellAddress&gt;();
+      for (uint row = 1; row &lt;= MAX_ROWS; ++row)
+      {
+        for (uint col = 1; col &lt;= MAX_COLS; ++col)
+        {
+          cellAddrs.Add(new CellAddress(row, col));
+        }
+      }
+
+      // Prepare the update
+      // GetCellEntryMap is what makes the update fast.
+      Dictionary&lt;String, CellEntry&gt; cellEntries = GetCellEntryMap(service, cellFeed, cellAddrs);
+
+      CellFeed batchRequest = new CellFeed(cellQuery.Uri, service);
+      foreach (CellAddress cellAddr in cellAddrs)
+      {
+        CellEntry batchEntry = cellEntries[cellAddr.IdString];
+        batchEntry.InputValue = cellAddr.IdString;
+        batchEntry.BatchData = new GDataBatchEntryData(cellAddr.IdString, GDataBatchOperationType.update);
+        batchRequest.Entries.Add(batchEntry);
+      }
+
+      // Submit the update
+      CellFeed batchResponse = (CellFeed)service.Batch(batchRequest, new Uri(cellFeed.Batch));
+
+      // Check the results
+      bool isSuccess = true;
+      foreach (CellEntry entry in batchResponse.Entries)
+      {
+        string batchId = entry.BatchData.Id;
+        if (entry.BatchData.Status.Code != 200)
+        {
+          isSuccess = false;
+          GDataBatchStatus status = entry.BatchData.Status;
+          Console.WriteLine("{0} failed ({1})", batchId, status.Reason);
+        }
+      }
+
+      Console.WriteLine(isSuccess ? "Batch operations successful." : "Batch operations failed");
+    }
+
+    /**
+     * Connects to the specified {@link SpreadsheetsService} and uses a batch
+     * request to retrieve a {@link CellEntry} for each cell enumerated in {@code
+     * cellAddrs}. Each cell entry is placed into a map keyed by its RnCn
+     * identifier.
+     *
+     * @param service the spreadsheet service to use.
+     * @param cellFeed the cell feed to use.
+     * @param cellAddrs list of cell addresses to be retrieved.
+     * @return a dictionary consisting of one {@link CellEntry} for each address in {@code
+     *         cellAddrs}
+     */
+    private static Dictionary&lt;String, CellEntry&gt; GetCellEntryMap(
+        SpreadsheetsService service, CellFeed cellFeed, List&lt;CellAddress&gt; cellAddrs)
+    {
+      CellFeed batchRequest = new CellFeed(new Uri(cellFeed.Self), service);
+      foreach (CellAddress cellId in cellAddrs)
+      {
+        CellEntry batchEntry = new CellEntry(cellId.Row, cellId.Col, cellId.IdString);
+        batchEntry.Id = new AtomId(string.Format("{0}/{1}", cellFeed.Self, cellId.IdString));
+        batchEntry.BatchData = new GDataBatchEntryData(cellId.IdString, GDataBatchOperationType.query);
+        batchRequest.Entries.Add(batchEntry);
+      }
+
+      CellFeed queryBatchResponse = (CellFeed)service.Batch(batchRequest, new Uri(cellFeed.Batch));
+
+      Dictionary&lt;String, CellEntry&gt; cellEntryMap = new Dictionary&lt;String, CellEntry&gt;();
+      foreach (CellEntry entry in queryBatchResponse.Entries)
+      {
+        cellEntryMap.Add(entry.BatchData.Id, entry);
+        Console.WriteLine("batch {0} (CellEntry: id={1} editLink={2} inputValue={3})",
+            entry.BatchData.Id, entry.Id, entry.EditUri,
+            entry.InputValue);
+      }
+
+      return cellEntryMap;
+    }
+  }
+}
+</code></pre></section></div>
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+
+
+<div itemprop="datePublished" content="2012-07-18T18:14:09.231124" id="gc-content-last-updated">Last updated July 18, 2012.</div>
+
+</div>
+
+
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+
+      
+      
+      <footer id="gc-footer">
+        <div id="gc-copyright">
+          <a href="/">
+            <img id="developers-logo-footer" src="/_static/images/developers-logo-footer.png" alt="Google Developers logo" style="vertical-align: center; float: left"/>
+          </a>
+          <ul>
+            <li><a href="http://www.google.com/">Google</a></li>
+            <li><a href="/readme/terms">Terms of Service</a></li>
+            <li><a href="http://www.google.com/intl/en/privacy/">Privacy Policy</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a class="google-feedback" data-p="81425" data-b="Documentation"  data-v="devsite-20121213-rc06.364010536590380644" href="">Report a bug</a></li>
+          </ul>
+        </div>
+        
+        <div id="gc-language">
+          <ul>
+            <li>
+              <form id="setlang" action="/i18n/setlang/" method="post">
+                <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='5804c76b5a5a9335cc1c55d7dcd1c799' /></div>
+                <select id="footer_language" name="language">
+                  
+                  
+                  <option
+                     value="ar"
+                     >
+                    العربيّة
+                  </option>
+                  
+                  <option
+                     value="bg"
+                     >
+                    български
+                  </option>
+                  
+                  <option
+                     value="ca"
+                     >
+                    català
+                  </option>
+                  
+                  <option
+                     value="zh-cn"
+                     >
+                    简体中文
+                  </option>
+                  
+                  <option
+                     value="zh-tw"
+                     >
+                    繁體中文
+                  </option>
+                  
+                  <option
+                     value="hr"
+                     >
+                    Hrvatski
+                  </option>
+                  
+                  <option
+                     value="cs"
+                     >
+                    česky
+                  </option>
+                  
+                  <option
+                     value="da"
+                     >
+                    Dansk
+                  </option>
+                  
+                  <option
+                     value="nl"
+                     >
+                    Nederlands
+                  </option>
+                  
+                  <option
+                     value="en"
+                      selected="selected" >
+                    English
+                  </option>
+                  
+                  <option
+                     value="fa"
+                     >
+                    فارسی
+                  </option>
+                  
+                  <option
+                     value="fi"
+                     >
+                    suomi
+                  </option>
+                  
+                  <option
+                     value="fr"
+                     >
+                    Français
+                  </option>
+                  
+                  <option
+                     value="de"
+                     >
+                    Deutsch
+                  </option>
+                  
+                  <option
+                     value="el"
+                     >
+                    Ελληνικά
+                  </option>
+                  
+                  <option
+                     value="he"
+                     >
+                    עברית
+                  </option>
+                  
+                  <option
+                     value="hi"
+                     >
+                    Hindi
+                  </option>
+                  
+                  <option
+                     value="hu"
+                     >
+                    Magyar
+                  </option>
+                  
+                  <option
+                     value="id"
+                     >
+                    Bahasa Indonesia
+                  </option>
+                  
+                  <option
+                     value="it"
+                     >
+                    italiano
+                  </option>
+                  
+                  <option
+                     value="ja"
+                     >
+                    日本語
+                  </option>
+                  
+                  <option
+                     value="ko"
+                     >
+                    한국어
+                  </option>
+                  
+                  <option
+                     value="lv"
+                     >
+                    latviešu
+                  </option>
+                  
+                  <option
+                     value="lt"
+                     >
+                    Lithuanian
+                  </option>
+                  
+                  <option
+                     value="nb"
+                     >
+                    Norsk (bokmål)
+                  </option>
+                  
+                  <option
+                     value="nn"
+                     >
+                    Norsk (nynorsk)
+                  </option>
+                  
+                  <option
+                     value="pl"
+                     >
+                    polski
+                  </option>
+                  
+                  <option
+                     value="pt-br"
+                     >
+                    Português Brasileiro
+                  </option>
+                  
+                  <option
+                     value="pt"
+                     >
+                    Português
+                  </option>
+                  
+                  <option
+                     value="ro"
+                     >
+                    Română
+                  </option>
+                  
+                  <option
+                     value="ru"
+                     >
+                    Русский
+                  </option>
+                  
+                  <option
+                     value="sr"
+                     >
+                    српски
+                  </option>
+                  
+                  <option
+                     value="sk"
+                     >
+                    slovenský
+                  </option>
+                  
+                  <option
+                     value="sl"
+                     >
+                    Slovenščina
+                  </option>
+                  
+                  <option
+                     value="es"
+                     >
+                    español
+                  </option>
+                  
+                  <option
+                     value="sv"
+                     >
+                    Svenska
+                  </option>
+                  
+                  <option
+                     value="th"
+                     >
+                    Thai
+                  </option>
+                  
+                  <option
+                     value="tr"
+                     >
+                    Türkçe
+                  </option>
+                  
+                  <option
+                     value="uk"
+                     >
+                    Українська
+                  </option>
+                  
+                  <option
+                     value="vi"
+                     >
+                    Vietnamese
+                  </option>
+                  
+                </select>
+              </form>
+            </li>
+          </ul>
+        </div>
+        
+      </footer>
+      
+      
+    </div>
+    <div id="needAuth" class="msgDialogContent">
+      
+      <h1>Authentication required</h1>
+      
+      <div>
+        You need to be signed in with <a href='http://www.google.com/+'>Google+</a> to do that.
+      </div>
+      <button>Sign in</button>
+      <button>Cancel</button>
+    </div>
+    <div id="signingIn" class="msgDialogContent">
+      
+      <h1>Signing you in...</h1>
+      <div>
+        
+        Google Developers needs your permission to do that.
+      </div>
+      
+      <button>Try again</button>
+      
+      <button>Cancel</button>
+    </div>
+    <script src="/_static/js/script_foot.js"></script>
+    <script>
+      (function($) {
+        devsite.devsite.Init($, null, '');
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+      
+    </script>
+    <!-- Google Code for PXL - Developers - Codesite - HP - 90d Remarketing List -->
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if ($.browser.msie) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+
+    
+
+    <script>
+      
+      google.load('visualization', '1', {packages: ['table']});
+    </script>
+
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    // Render any carousels on the page
+    $('.carousel').carousel();
+    // Render any feed widgets on the page
+    
+    $('.feed').rss();
+    $('.feed-plain').rss();
+    // Render any OSS widgets on the page.
+    $('.oss').oss();
+    });
+</script>
+
+<script type="text/javascript" defer>
+
+
+$(document).ready(function() {
+    contentTimer.name = 'content';
+    contentTimer.tick('ol');
+    window.jstiming.report(contentTimer);
+
+    // Boilerplate javascript to enable the plusone button
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+});
+</script>
+
+
+
+
+  </body>
+
+  
+</html>
